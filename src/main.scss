@@ -1,0 +1,57 @@
+html, body, #top, .main, .album-carousel, .carousel-inner, .item {
+    height: 100%;
+}
+
+body {
+    background-color: black;
+}
+
+.album-carousel {
+    .carousel-control {
+        background-image: none;
+    }
+}
+
+.album-carousel .item img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.btn-group-main-menu {
+    position: absolute;
+    left: 5%;
+    top: 5%;
+    height: 10%;
+    width: 10%;
+
+    button, button:hover, button:active, button:focus {
+        color: white !important;
+        background-color: rgba(0,0,0,0.33) !important;
+        border-radius: 0;
+        font-size: 5em;
+        border: none;
+        box-shadow: none !important;
+        width: 100%;
+        padding: 0;
+    }
+
+    .dropdown-menu {
+        width: 900%;
+        height: 700%;
+        overflow: scroll;
+        margin-top: 28% !important;
+
+        border-radius: 0;
+        box-shadow: none;
+        background-color: rgba(0,0,0,0.33);
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        a {
+            color: white;
+            font-size: 2em;
+        }
+    }
+}

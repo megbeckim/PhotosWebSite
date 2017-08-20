@@ -1,8 +1,10 @@
-// main.js
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Site } from './Site';
+
+import './main.scss';
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('example')
+  <Site/>,
+  document.getElementById('top')
 );
