@@ -3,55 +3,66 @@ html, body, #top, .main, .album-carousel, .carousel-inner, .item {
 }
 
 body {
-    background-color: black;
+    background-color: white;
+    font-size: 50px;
+    line-height: 0.9em;
 }
 
-.album-carousel {
-    .carousel-control {
-        background-image: none;
-    }
+.site-nav {
+    height: 2em;
+    background-color: white;
+    line-height: 1.85em;
+    flex-grow: 1;
+    padding-left: 25px;
 }
 
-.album-carousel .item img {
-    height: 100%;
-    width: 100%;
+body:hover .album:hover img {
+    transition: transform 0.5s;
+    transform: scale(1.025);
+}
+
+body:hover .album img {
+    transition: transform 0.5s;
+    transform: scale(1);
+}
+
+.album-catalog {
+    flex-flow: wrap;
+    display: flex;
+}
+
+.year-and-album {
+    height: 300px;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+}
+
+.album {
+    width: 300px;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.album img {
     object-fit: cover;
 }
 
-.btn-group-main-menu {
+.title {
     position: absolute;
-    left: 5%;
-    top: 5%;
-    height: 10%;
-    width: 10%;
+    color: #fff;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+}
 
-    button, button:hover, button:active, button:focus {
-        color: white !important;
-        background-color: rgba(0,0,0,0.33) !important;
-        border-radius: 0;
-        font-size: 5em;
-        border: none;
-        box-shadow: none !important;
-        width: 100%;
-        padding: 0;
-    }
-
-    .dropdown-menu {
-        width: 900%;
-        height: 700%;
-        overflow: scroll;
-        margin-top: 28% !important;
-
-        border-radius: 0;
-        box-shadow: none;
-        background-color: rgba(0,0,0,0.33);
-        border: none;
-        padding: 0;
-        margin: 0;
-
-        a {
-            color: white;
-            font-size: 2em;
-        }
-    }
+.year {
+    color: white;
+    width: 83px;
+    padding-top: 15px;
+    overflow-wrap: break-word;
+    text-align: center;
 }
