@@ -1,0 +1,30 @@
+html, body, #top, .main {
+    height: 100%;
+}
+
+body {
+    background-color: black;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.title {
+    transition: opacity 0.5s;
+    opacity: 0;
+    line-height: 100px;
+    color: white;
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
+    text-align: center;
+    font-size: 4em;
+}
+
+.visible {
+    transition: opacity 0.5s;
+    opacity: 1;
+}

@@ -1,0 +1,68 @@
+html, body, #top, .main, .album-carousel, .carousel-inner, .item {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+    font-size: 50px;
+    line-height: 0.9em;
+}
+
+.site-nav {
+    height: 2em;
+    background-color: white;
+    line-height: 1.85em;
+    flex-grow: 1;
+    padding-left: 25px;
+}
+
+body:hover .album:hover img {
+    transition: transform 0.5s;
+    transform: scale(1.025);
+}
+
+body:hover .album img {
+    transition: transform 0.5s;
+    transform: scale(1);
+}
+
+.album-catalog {
+    flex-flow: wrap;
+    display: flex;
+}
+
+.year-and-album {
+    height: 300px;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+}
+
+.album {
+    width: 300px;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.album img {
+    object-fit: cover;
+}
+
+.title {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+}
+
+.year {
+    color: white;
+    width: 83px;
+    padding-top: 15px;
+    overflow-wrap: break-word;
+    text-align: center;
+}

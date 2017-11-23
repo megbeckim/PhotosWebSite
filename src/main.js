@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Site } from './Site';
 
-import './main.scss';
+import './main2.scss';
 
 ReactDOM.render(
   <Site/>,

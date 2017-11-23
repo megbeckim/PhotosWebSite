@@ -3,14 +3,8 @@ const webpack = require('webpack');
 var path = require('path');
 module.exports = {
     context: __dirname + '/src',
-    entry: {
-        app: ['./main.js']
-    },
-    output: {
-        path: './bin',
-        publicPath: '/assets',
-        filename: 'bundle.js'
-    },
+    entry: './main2.js',
+    output: 'bundle.js',
     module: {
         loaders: [
             {
@@ -36,5 +30,8 @@ module.exports = {
             comments: false,
         },
         }),
-    ]
+    ],
+    devServer: {
+            port: 9000
+            }
 };
