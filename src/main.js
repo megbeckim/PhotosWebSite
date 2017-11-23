@@ -10,7 +10,10 @@ ReactDOM.render(
     <div>
       <Headroom>
         <div className='site-nav'>
-            <span>Fagan</span><span>Photos</span>
+            <div className='branding'>
+                <div>Fagan</div><div>Photos<div>.com</div></div>
+            </div>
+            <div>search</div>
         </div>
       </Headroom>
       <AlbumCatalog/>
