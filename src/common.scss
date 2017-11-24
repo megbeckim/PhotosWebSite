@@ -1,0 +1,14 @@
+@mixin hover {
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+        transform: scale(1);
+    }
+
+    &:hover img {
+        transition: transform 0.5s;
+        transform: scale(1.025);
+    }
+}

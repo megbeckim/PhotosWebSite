@@ -1,0 +1,47 @@
+.album-catalog {
+    flex-flow: wrap;
+    display: flex;
+}
+
+.year-and-album {
+    height: 300px;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+}
+
+.album {
+    width: 300px;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+        transform: scale(1);
+    }
+
+    &:hover img {
+        transition: transform 0.5s;
+        transform: scale(1.025);
+    }
+}
+
+.title {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+}
+
+.year {
+    width: 83px;
+    padding-top: 15px;
+    overflow-wrap: break-word;
+    text-align: center;
+}

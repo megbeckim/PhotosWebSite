@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import createColor from './colours.js';
 
 export class Thumbnails extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export class Thumbnails extends Component {
                 {
                     this.props.album.chapters.map( (chapter, ix) => {
                         return <div className='chapter' key={ix}>
-                                <div className='chapter-title'>{chapter.title}</div>
+                                <div className='chapter-title' style={{'backgroundColor': createColor(ix)}}>{chapter.title}</div>
                                 {
                                     chapter.pictures.map( (picture, ix2) => {
                                         return  <img key={ix2}
