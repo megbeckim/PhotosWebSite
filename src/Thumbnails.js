@@ -17,8 +17,10 @@ export class Thumbnails extends Component {
                                 <div className='chapter-title' style={{'backgroundColor': createColor(ix)}}>{chapter.title}</div>
                                 {
                                     chapter.pictures.map( (picture, ix2) => {
-                                        return  <img key={ix2}
-                                        src={`http:\/\/faganphotos.com\/album\/2015%20Ethiopia\/pictures\/${picture.fileName}`} />
+                                        return  <div key={ix2} className='fp-thumbnail'>
+                                            <img
+                                            src={`http:\/\/faganphotos.com\/album\/2015%20Ethiopia\/pictures\/${picture.fileName}`} />
+                                        </div>
                                     })
                                 }
                             </div>

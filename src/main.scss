@@ -23,6 +23,7 @@ body {
     display: flex;
     box-shadow: 0px 4px 11px 0px black;
     margin-bottom: 15px;
+    background-color: white;
 }
 
 .branding {
@@ -64,6 +65,8 @@ body {
     &.open {
         display: block;
     }
+
+    @import './AlbumCatalog.scss';
 }
 
 .thumbnails-container {
@@ -79,7 +82,6 @@ body {
             height: auto;
         }
     }
-}
 
-@import './AlbumCatalog.scss';
-@import './Thumbnails.scss';
+    @import './Thumbnails.scss';
+}

@@ -1,3 +1,5 @@
+@import 'common';
+
 .thumbnails {
     height: 0;
     overflow: hidden;
@@ -8,17 +10,16 @@
 
         >* {
             height: 300px;
+            width: 300px;
         }
 
         .chapter-title {
-            width: 300px;
             padding: 25px;
         }
 
-        img {
-            width: 300px;
-            object-fit: cover;
+        .fp-thumbnail {
             flex-grow: 1;
+            @include hover;
         }
     }
 }
