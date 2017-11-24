@@ -34,8 +34,8 @@ export class AlbumCatalog extends Component {
 
                             return <div key={`${year}-${ix}`} className='year-and-album'>
                                 { ix == 0 && <div key={year} className='year' style={{'backgroundColor': yearColor}}>{year}</div> }
-                                <div className='album'>
-                                  <img width='100%' height='100%' src={album.coverImage} />
+                                <div key={ix} className='album' onClick={this.props.onAlbumSelected} >
+                                  <img src={album.coverImage} />
                                   <div className='title'>{title}</div>
                                 </div>
                             </div>;

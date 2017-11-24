@@ -1,4 +1,4 @@
-{
+const album = {
   "title": "2016 Trip to Ethiopia",
   "chapters": [
     {
@@ -250,4 +250,6 @@
       ]
     }
   ]
-}
+};
+
+export default album;
