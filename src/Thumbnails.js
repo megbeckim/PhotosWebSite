@@ -8,6 +8,10 @@ export class Thumbnails extends Component {
             };
     }
 
+    componentDidUpdate () {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         return (
               <div className='thumbnails'>

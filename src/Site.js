@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Headroom from 'react-headroom';
+import { Menu } from './Menu';
 import { AlbumCatalog } from './AlbumCatalog';
 import { Thumbnails } from './Thumbnails';
 import classNames from 'classnames';
@@ -21,12 +22,7 @@ export class Site extends Component {
         return (
             <div className='site'>
                 <Headroom>
-                <div className='site-nav'>
-                    <div className='branding'>
-                        <div>Fagan</div><div>Photos<div>.com</div></div>
-                    </div>
-                    <div>search</div>
-                </div>
+                    <Menu/>
                 </Headroom>
                 <div className={ classNames('album-catalog-container', { open: !this.state.selectedAlbum }) }>
                     <AlbumCatalog onAlbumSelected={ this.selectAlbum.bind(this) }/>
