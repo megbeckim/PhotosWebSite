@@ -18,11 +18,15 @@ export class Site extends Component {
         this.setState({selectedAlbum: album});
     }
 
+    unselectAlbum() {
+        this.setState({selectedAlbum: null});
+    }
+
     render() {
         return (
             <div className='site'>
                 <Headroom>
-                    <Menu/>
+                    <Menu />
                 </Headroom>
                 <div className={ classNames('album-catalog-container', { open: !this.state.selectedAlbum }) }>
                     <AlbumCatalog onAlbumSelected={ this.selectAlbum.bind(this) }/>

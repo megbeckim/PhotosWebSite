@@ -137,7 +137,7 @@ const model = [
   {
     'title': '2006 - Del & Vicky\'s civil wedding',
     'album': 'http://faganphotos.com/The%20Civil%20Wedding',
-    'coverImage': 'http://faganphotos.com/album/2015%20Ethiopia/pictures/P1230196.JPG',
+    'coverImage': 'http://faganphotos.com/album/The%20Civil%20Wedding/pictures/Hands.JPG',
   },
   {
     'title': '2006 - Gill & Don Lee\'s visit',
@@ -164,11 +164,11 @@ const model = [
     'album': 'http://old.faganphotos.com/ozhawaii2004/index.html',
     'coverImage': 'http://old.faganphotos.com/ozhawaii2004/Tim%20scuba%20Corsair%203.jpg',
   },
-  {
-    'title': '2004 - Our new condominium',
-    'album': 'http://old.faganphotos.com/newcondo/index.html',
-    'coverImage': 'http://faganphotos.com/album/2015%20Ethiopia/pictures/P1230196.JPG',
-  },
+//  {
+//    'title': '2004 - Our new condominium',
+//    'album': 'http://old.faganphotos.com/newcondo/index.html',
+//    'coverImage': 'http://faganphotos.com/album/2015%20Ethiopia/pictures/P1230196.JPG',
+//  },
   {
     'title': '2003 - 10th Anniversary: North Africa & Western Europe',
     'album': 'http://old.faganphotos.com/10thwedding/index.html',

@@ -4,7 +4,10 @@ var path = require('path');
 module.exports = {
     context: __dirname + '/src',
     entry: './main.js',
-    output: 'bundle.js',
+    output: {
+        path: 'bin',
+        filename: 'bundle.js'
+    },
     module: {
         loaders: [
             {
