@@ -23,19 +23,22 @@ export class AlbumCatalog extends Component {
         return (
               <div className='album-catalog'>
                 {
-                    years.map( (year, index) => {
-                        return groupedByYear[year].map((album, ix) => {
-                            const [, , title] = album.title.match(/([0-9]{4}) - (.*)/);
-                            const yearColor = createColor(year);
+                    years.map( (year, yearIndex) => {
+                        const yearColor = createColor(year);
 
-                            return <div key={`${year}-${ix}`} className='year-and-album'>
-                                { ix == 0 && <div key={year} className='year' style={{'backgroundColor': yearColor}}>{year}</div> }
-                                <div key={ix} className='album' onClick={this.props.onAlbumSelected} >
-                                  <img src={album.coverImage} />
-                                  <div className='title'>{title}</div>
-                                </div>
+                        return <div key={yearIndex} className='year-and-album'>
+                                <div className='year' style={{'backgroundColor': yearColor}}>{year}</div>
+                                {
+                                    groupedByYear[year].map((album, albumIndex) => {
+                                        const [, , title] = album.title.match(/([0-9]{4}) - (.*)/);
+
+                                        return <div key={albumIndex} className='album' onClick={this.props.onAlbumSelected} >
+                                              <img src={album.coverImage} />
+                                              <div className='title'>{title}</div>
+                                            </div>
+                                        })
+                                }
                             </div>;
-                            })
                         })
                 }
               </div>

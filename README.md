@@ -2,7 +2,7 @@ PhotosWebSite
 
 To run, enter the following command in a terminal:
 
-    webpack-dev-server
+    webpack-dev-server -d
 
 Then browse to:
 
