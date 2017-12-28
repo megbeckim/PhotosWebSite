@@ -18,7 +18,7 @@ export class Thumbnails extends Component {
                 {
                     this.props.album.chapters.map( (chapter, ix) => {
                         return <div className='chapter' key={ix}>
-                                <div className='chapter-title' style={{'backgroundColor': createColor(ix)}}>{chapter.title}</div>
+                                <div className='chapter-title'>{chapter.title}</div>
                                 {
                                     chapter.pictures.map( (picture, ix2) => {
                                         return  <div key={ix2} className='fp-thumbnail'>

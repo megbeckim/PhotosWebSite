@@ -26,7 +26,7 @@ export class Site extends Component {
         return (
             <div className='site'>
                 <Headroom>
-                    <Menu />
+                    <Menu selectedAlbum={ this.state.selectedAlbum } onUnselectAlbum={ this.unselectAlbum.bind(this) }/>
                 </Headroom>
                 <div className={ classNames('album-catalog-container', { open: !this.state.selectedAlbum }) }>
                     <AlbumCatalog onAlbumSelected={ this.selectAlbum.bind(this) }/>

@@ -39,9 +39,19 @@ $menu-height: 2em;
     height: 100%;
 }
 
-.site-nav>div:nth-child(2) {
+.commands {
+    font-size: 0.5em;
     background: black;
     flex-grow: 1;
     text-align: right;
     padding-right: 25px;
+    padding-top: 0.65em;
+
+    div {
+        line-height: 1.25em;
+
+        a:hover, a, a:visited {
+            color: white;
+        }
+    }
 }

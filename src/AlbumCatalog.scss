@@ -1,19 +1,22 @@
 @import 'common';
 
+$yearTileWidth: 83px;
+$tileHeight: 300px;
+
 .album-catalog {
     flex-flow: wrap;
     display: flex;
 }
 
 .year-and-album {
-    height: 300px;
+    height: $tileHeight;
     flex-grow: 1;
     position: relative;
     display: flex;
 }
 
 .album {
-    width: 300px;
+    width: $tileHeight;
     position: relative;
     flex-grow: 1;
 
@@ -22,16 +25,26 @@
 
 .title {
     position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: right;
     padding: 15px;
     text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
 }
 
 .year {
-    width: 83px;
-    padding-top: 15px;
+    width: $yearTileWidth;
     overflow-wrap: break-word;
     text-align: center;
+    background-color: black;
+    color: white;
+
+    div {
+        transform: rotate(-90deg) perspective(1px);
+         width: $tileHeight;
+         position: absolute;
+         left: -(($tileHeight - $yearTileWidth)/2);
+         top: (($tileHeight - $yearTileWidth)/2);
+         line-height: $yearTileWidth;
+    }
 }

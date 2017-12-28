@@ -6,11 +6,11 @@
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s;
-        transform: scale(1);
+        transform: scale(1.03);
     }
 
     &:hover img {
         transition: transform 0.5s;
-        transform: scale(1.025);
+        transform: scale(1.05);
     }
 }

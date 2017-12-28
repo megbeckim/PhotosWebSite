@@ -170,7 +170,7 @@ const model = [
 //    'coverImage': 'http://faganphotos.com/album/2015%20Ethiopia/pictures/P1230196.JPG',
 //  },
   {
-    'title': '2003 - 10th Anniversary: North Africa & Western Europe',
+    'title': '2003 - North Africa & Western Europe',
     'album': 'http://old.faganphotos.com/10thwedding/index.html',
     'coverImage': 'http://old.faganphotos.com/10thwedding/Dionysios%20on%20tiger.jpg',
   },
