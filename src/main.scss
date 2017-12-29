@@ -26,7 +26,7 @@ body {
         display: block;
     }
 
-    @import './AlbumCatalog.scss';
+    @import './AlbumCatalog';
 }
 
 .thumbnails-container {
@@ -43,5 +43,5 @@ body {
         }
     }
 
-    @import './Thumbnails.scss';
+    @import './Thumbnails';
 }
