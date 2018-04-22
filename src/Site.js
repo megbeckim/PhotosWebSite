@@ -28,6 +28,13 @@ export class Site extends Component {
         this.setState( { myRef: this.myRef.current, myRef2: this.myRef2.current } );
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        // TODO this is always true at the moment b/c selectedAlbum is set back to null upon returning to albums
+        if ( prevState.selectedAlbum !== this.state.selectedAlbum ) {
+            this.myRef2.current.scrollTop = 0;
+        }
+    }
+
     render() {
         return (
             <div className='site'>
