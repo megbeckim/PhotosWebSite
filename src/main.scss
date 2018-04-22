@@ -17,12 +17,12 @@ body {
 
 @import 'Menu';
 
-.album-selector-container, .photo-selector-container {
+.album-catalog, .album {
     overflow: scroll;
     height: 100%;
 }
 
-.album-selector, .photo-selector {
+.album-catalog-container, .album-container {
     height: 100%;
     display: none;
     &.open {
@@ -30,14 +30,14 @@ body {
     }
 }
 
-.album-catalog-container {
+.album-catalog-wrapper {
     height: 100%;
     position: relative;
 
     @import './AlbumCatalog';
 }
 
-.thumbnails-container {
+.album-wrapper {
     top: 0;
     position: relative;
     background-color: white;
