@@ -3,7 +3,7 @@ body {
 }
 
 body {
-    background-color: white;
+    background-color: black;
     color: white;
     font-size: 50px;
     line-height: 0.9em;
@@ -17,31 +17,31 @@ body {
 
 @import 'Menu';
 
-.album-catalog-container {
+.album-selector-container, .photo-selector-container {
+    overflow: scroll;
     height: 100%;
-    position: relative;
-    display: none;
+}
 
+.album-selector, .photo-selector {
+    height: 100%;
+    display: none;
     &.open {
         display: block;
     }
+}
+
+.album-catalog-container {
+    height: 100%;
+    position: relative;
 
     @import './AlbumCatalog';
 }
 
 .thumbnails-container {
-    height: 0;
     top: 0;
     position: relative;
     background-color: white;
-
-    &.open {
-        height: 100%;
-
-        .thumbnails {
-            height: auto;
-        }
-    }
+    height: 100%;
 
     @import './Thumbnails';
 }
