@@ -31,17 +31,9 @@ body {
 }
 
 .album-catalog-wrapper {
-    height: 100%;
-    position: relative;
-
-    @import './AlbumCatalog';
+    @import './albumCatalog/AlbumCatalog';
 }
 
 .album-wrapper {
-    top: 0;
-    position: relative;
-    background-color: white;
-    height: 100%;
-
-    @import './Thumbnails';
+    @import './album/Album';
 }
