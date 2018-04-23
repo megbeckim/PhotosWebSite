@@ -10,7 +10,7 @@ export class Album extends Component {
     }
 
     componentDidMount() {
-        this.setState( { albumRef: this.albumRef.current } );
+        this.setState( { albumRefCurrent: this.albumRef.current } );
     }
 
     componentDidUpdate(prevProps) {
@@ -24,7 +24,7 @@ export class Album extends Component {
         return (
             <div className={ classNames('album-container', { open: this.props.selectedAlbum }) }>
                 <div className='album' ref={this.albumRef}>
-                    <Headroom disable={ !this.state.albumRef } parent={ () => this.albumRef.current }>
+                    <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div style={{ height: "2em" }} onClick={ this.props.onAlbumUnselected }>back</div>
                     </Headroom>
                     <div className='album-wrapper'>

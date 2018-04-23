@@ -10,7 +10,7 @@ export class AlbumCatalog extends Component {
     }
 
     componentDidMount() {
-        this.setState( { albumCatalogRef: this.albumCatalogRef.current } );
+        this.setState( { albumCatalogRefCurrent: this.albumCatalogRef.current } );
     }
 
     render() {
@@ -26,7 +26,8 @@ export class AlbumCatalog extends Component {
         return (
             <div className={ classNames('album-catalog-container', { open: !this.props.selectedAlbum }) }>
                 <div className='album-catalog' ref={this.albumCatalogRef}>
-                    <Headroom disable={ !this.state.albumCatalogRef } parent={ () => this.albumCatalogRef.current }>
+                    <Headroom disable={ !this.state.albumCatalogRefCurrent }
+                            parent={ () => this.state.albumCatalogRefCurrent }>
                         <div className='site-nav'>
                             <div className='branding'>
                                 <div>Fagan</div><div>Photos<div>.com</div></div>
