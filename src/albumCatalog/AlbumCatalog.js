@@ -23,8 +23,6 @@ export class AlbumCatalog extends Component {
 
         const years = Object.keys(groupedByYear).sort().reverse();
 
-        const self = this;
-
         return (
             <div className={ classNames('album-catalog-container', { open: !this.props.selectedAlbum }) }>
                 <div className='album-catalog' ref={this.albumCatalogRef}>
@@ -44,7 +42,7 @@ export class AlbumCatalog extends Component {
 
                                         return <div key={`${year}-${ix}`} className='year-and-album'>
                                             { ix == 0 && <div key={year} className='year'><div>{year}</div></div> }
-                                            <div key={ix} className='album' onClick={ () => self.props.onAlbumSelected(album) } >
+                                            <div key={ix} className='album' onClick={ () => this.props.onAlbumSelected(album) } >
                                               <img src={album.coverImage} />
                                               <div className='title'>{title}</div>
                                             </div>
