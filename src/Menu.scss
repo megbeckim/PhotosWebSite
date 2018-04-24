@@ -5,19 +5,17 @@
 }
 
 .site-nav {
+    @include header;
     line-height: 1.85em;
-    padding-left: 25px;
-    display: flex;
-    background-color: white;
-    box-shadow: 0 4px 11px 0 #000;
 }
 
 .branding {
-    @include header;
     font-weight: bold;
+    display: flex;
 }
 
 .branding>div:nth-child(1) {
+    padding-left: 25px;
     background-color: white;
     color: black;
     position: relative;

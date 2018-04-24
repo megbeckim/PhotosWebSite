@@ -25,7 +25,10 @@ export class Album extends Component {
             <div className={ classNames('album-container', { open: this.props.selectedAlbum }) }>
                 <div className='album' ref={this.albumRef}>
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
-                        <div className='header' onClick={ this.props.onAlbumUnselected }>back</div>
+                        <div className='header'>
+                            <div>{this.props.album.title}</div>
+                            <div onClick={ this.props.onAlbumUnselected }>back</div>
+                        </div>
                     </Headroom>
                     <div className='album-wrapper'>
                       <div className='thumbnails'>
