@@ -30,7 +30,9 @@ export class AlbumCatalog extends Component {
                             parent={ () => this.state.albumCatalogRefCurrent }>
                         <div className='site-nav'>
                             <div className='branding'>
-                                <div>Fagan</div><div>Photos<div>.com</div></div>
+                                <div>Fagan</div>
+                                <div>Photos<div>.com</div></div>
+                                <div></div>
                             </div>
                         </div>
                     </Headroom>

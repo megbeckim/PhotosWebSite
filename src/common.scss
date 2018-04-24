@@ -1,3 +1,5 @@
+$header-height: 2em;
+
 @mixin hover {
     overflow: hidden;
 
@@ -13,4 +15,11 @@
         transition: transform 0.5s;
         transform: scale(1.05);
     }
+}
+
+@mixin header {
+    height: $header-height;
+    width: 100%;
+    display: flex;
+    background: black;
 }

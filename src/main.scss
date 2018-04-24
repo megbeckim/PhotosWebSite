@@ -23,10 +23,17 @@ body {
 }
 
 .album-catalog-container, .album-container {
+    position: fixed;
+    top: 0;
     height: 100%;
-    display: none;
+    visibility: hidden;
+
     &.open {
-        display: block;
+        visibility: visible;
+    }
+
+    .header {
+        @include header;
     }
 }
 
