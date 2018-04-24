@@ -21,6 +21,7 @@ export class Site extends Component {
     }
 
     render() {
+        // TODO the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
         return (
             <div className='site'>
                 <AlbumCatalog selectedAlbum={ this.state.selectedAlbum }
