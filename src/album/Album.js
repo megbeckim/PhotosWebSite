@@ -27,7 +27,7 @@ export class Album extends Component {
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>
-                            <div onClick={ this.props.onAlbumUnselected }>back</div>
+                            <div onClick={ this.props.onAlbumUnselected }>&larr;</div>
                         </div>
                     </Headroom>
                     <div className='album-wrapper'>

@@ -3,48 +3,86 @@
 $yearTileWidth: 83px;
 $tileHeight: 300px;
 
-.album-catalog {
-    flex-flow: wrap;
-    display: flex;
-}
+.album-catalog-container {
+    @include card;
 
-.year-and-album {
-    height: $tileHeight;
-    flex-grow: 1;
-    position: relative;
-    display: flex;
-}
+    .header {
+        @include header;
 
-.album {
-    width: $tileHeight;
-    position: relative;
-    flex-grow: 1;
+        .branding {
+            font-weight: bold;
+            display: flex;
+        }
 
-    @include hover;
-}
+        .branding>div:nth-child(1) {
+            padding-left: $horizontal-padding;
+            background-color: white;
+            color: black;
+            position: relative;
+        }
 
-.title {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    text-align: right;
-    padding: 15px;
-    text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
-}
+        .branding>div:nth-child(2) {
+            position: relative;
+        }
 
-.year {
-    width: $yearTileWidth;
-    overflow-wrap: break-word;
-    text-align: center;
-    background-color: black;
-    color: white;
+        .branding>div:nth-child(3) {
+            flex-grow: 1;
+        }
 
-    div {
-        transform: rotate(-90deg) perspective(1px);
-         width: $tileHeight;
-         position: absolute;
-         left: -(($tileHeight - $yearTileWidth)/2);
-         top: (($tileHeight - $yearTileWidth)/2);
-         line-height: $yearTileWidth;
+        .branding>div>div {
+            font-size: .5em;
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            height: 100%;
+        }
+    }
+
+    .album-catalog-wrapper {
+        .album-catalog {
+            flex-flow: wrap;
+            display: flex;
+        }
+
+        .year-and-album {
+            height: $tileHeight;
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+        }
+
+        .album {
+            width: $tileHeight;
+            position: relative;
+            flex-grow: 1;
+
+            @include hover;
+        }
+
+        .title {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            text-align: right;
+            padding: 15px;
+            text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+        }
+
+        .year {
+            width: $yearTileWidth;
+            overflow-wrap: break-word;
+            text-align: center;
+            background-color: black;
+            color: white;
+
+            div {
+                transform: rotate(-90deg) perspective(1px);
+                 width: $tileHeight;
+                 position: absolute;
+                 left: -(($tileHeight - $yearTileWidth)/2);
+                 top: (($tileHeight - $yearTileWidth)/2);
+                 line-height: $yearTileWidth;
+            }
+        }
     }
 }

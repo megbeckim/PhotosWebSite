@@ -1,8 +1,5 @@
 body {
     height: 100%;
-}
-
-body {
     background-color: black;
     color: white;
     font-size: 50px;
@@ -15,32 +12,6 @@ body {
     width: 100%;
 }
 
-@import 'Menu';
+@import './albumCatalog/AlbumCatalog';
 
-.album-catalog, .album {
-    overflow: scroll;
-    height: 100%;
-}
-
-.album-catalog-container, .album-container {
-    position: fixed;
-    top: 0;
-    height: 100%;
-    visibility: hidden;
-
-    &.open {
-        visibility: visible;
-    }
-
-    .header {
-        @include header;
-    }
-}
-
-.album-catalog-wrapper {
-    @import './albumCatalog/AlbumCatalog';
-}
-
-.album-wrapper {
-    @import './album/Album';
-}
+@import './album/Album';

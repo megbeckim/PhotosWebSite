@@ -1,25 +1,48 @@
 @import 'common';
 
-.thumbnails {
-    overflow: hidden;
+.album-container {
+    @include card;
 
-    .chapter {
-        display: flex;
-        flex-flow: wrap;
+    .header {
+        @include header;
 
-        >* {
-            height: 300px;
-            width: 300px;
-        }
+        padding-left: $horizontal-padding;
+        padding-right: $horizontal-padding;
+        font-weight: bold;
 
-        .chapter-title {
-            padding: 25px;
-            background-color: black;
-        }
-
-        .fp-thumbnail {
+        >div:nth-child(1) {
             flex-grow: 1;
-            @include hover;
+        }
+
+        >div:nth-child(2) {
+            text-align: right;
+            cursor:pointer;
+        }
+    }
+
+    .album-wrapper {
+        .thumbnails {
+            overflow: hidden;
+
+            .chapter {
+                display: flex;
+                flex-flow: wrap;
+
+                >* {
+                    height: 300px;
+                    width: 300px;
+                }
+
+                .chapter-title {
+                    padding: 25px;
+                    background-color: black;
+                }
+
+                .fp-thumbnail {
+                    flex-grow: 1;
+                    @include hover;
+                }
+            }
         }
     }
 }

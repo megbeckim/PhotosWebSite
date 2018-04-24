@@ -28,7 +28,7 @@ export class AlbumCatalog extends Component {
                 <div className='album-catalog' ref={this.albumCatalogRef}>
                     <Headroom disable={ !this.state.albumCatalogRefCurrent }
                             parent={ () => this.state.albumCatalogRefCurrent }>
-                        <div className='site-nav'>
+                        <div className='header'>
                             <div className='branding'>
                                 <div>Fagan</div>
                                 <div>Photos<div>.com</div></div>

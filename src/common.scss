@@ -1,7 +1,9 @@
 $header-height: 2em;
+$horizontal-padding: 25px;
 
 @mixin hover {
     overflow: hidden;
+    cursor:pointer;
 
     img {
         width: 100%;
@@ -19,8 +21,25 @@ $header-height: 2em;
 
 @mixin header {
     height: $header-height;
+    line-height: 1.85em;
     width: 100%;
     display: flex;
     background: black;
     box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.5);
+}
+
+@mixin card {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    visibility: hidden;
+
+    &.open {
+        visibility: visible;
+    }
+
+    >div {
+        overflow: scroll;
+        height: 100%;
+    }
 }
