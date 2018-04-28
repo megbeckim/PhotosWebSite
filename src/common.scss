@@ -32,11 +32,6 @@ $horizontal-padding: 25px;
     position: fixed;
     top: 0;
     height: 100%;
-    visibility: hidden;
-
-    &.open {
-        visibility: visible;
-    }
 
     >div {
         overflow: scroll;

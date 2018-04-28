@@ -1,5 +1,7 @@
 @import 'common';
 
+$animation-duration: 0.5s;
+
 .album-container {
     @include card;
 

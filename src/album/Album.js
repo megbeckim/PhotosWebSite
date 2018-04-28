@@ -13,16 +13,9 @@ export class Album extends Component {
         this.setState( { albumRefCurrent: this.albumRef.current } );
     }
 
-    componentDidUpdate(prevProps) {
-        // TODO this is always true at the moment b/c selectedAlbum is set back to null upon returning to albums
-        if ( prevProps.selectedAlbum !== this.props.selectedAlbum ) {
-            this.albumRef.current.scrollTop = 0;
-        }
-    }
-
     render() {
         return (
-            <div className={ classNames('album-container', { open: this.props.selectedAlbum }) }>
+            <div className='album-container'>
                 <div className='album' ref={this.albumRef}>
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
@@ -40,7 +33,7 @@ export class Album extends Component {
                                             chapter.pictures.map( (picture, ix2) => {
                                                 return  <div key={ix2} className='fp-thumbnail'>
                                                     <img
-                                                    src={`http:\/\/faganphotos.com\/album\/2015%20Ethiopia\/pictures\/${picture.fileName}`} />
+                                                    src={`${this.props.album.folder}/${picture.fileName}`} />
                                                 </div>
                                             })
                                         }
