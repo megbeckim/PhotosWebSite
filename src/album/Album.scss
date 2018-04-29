@@ -1,7 +1,5 @@
 @import 'common';
 
-$animation-duration: 0.5s;
-
 .album-container {
     @include card;
 
@@ -25,6 +23,7 @@ $animation-duration: 0.5s;
     .album-wrapper {
         .thumbnails {
             overflow: hidden;
+            background-color: black;
 
             .chapter {
                 display: flex;
@@ -37,7 +36,6 @@ $animation-duration: 0.5s;
 
                 .chapter-title {
                     padding: 25px;
-                    background-color: black;
                 }
 
                 .fp-thumbnail {

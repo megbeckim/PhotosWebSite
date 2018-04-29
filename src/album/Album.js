@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Headroom from 'react-headroom';
-import classNames from 'classnames';
 
 export class Album extends Component {
     constructor(props) {
