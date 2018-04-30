@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AlbumCatalog } from './albumCatalog/AlbumCatalog';
 import { Album } from './album/Album';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 export class Site extends Component {
     constructor( props ) {
@@ -25,17 +25,15 @@ export class Site extends Component {
     render() {
         // TODO the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
         return (
-            <ReactCSSTransitionGroup
-                      component='div'
-                      className='site'
-                      transitionName='container'
-                      transitionEnterTimeout={500}
-                      transitionLeaveTimeout={500}>
+            <TransitionGroup className='site'>
                 <AlbumCatalog model={ this.state.model }
                     onAlbumSelected={ this.selectAlbum.bind( this ) } />
-                { this.state.selectedAlbum && <Album album={ this.state.selectedAlbum }
-                    onAlbumUnselected={ this.unselectAlbum.bind( this ) } /> }
-            </ReactCSSTransitionGroup>
+                { this.state.selectedAlbum &&
+                    <CSSTransition key='1' classNames='container' timeout={500} >
+                        <Album album={ this.state.selectedAlbum } onAlbumUnselected={ this.unselectAlbum.bind( this ) } />
+                    </CSSTransition>
+                }
+            </TransitionGroup>
         );
     }
 }

@@ -24,11 +24,11 @@ body {
         }
     }
 
-    >.container-leave {
+    >.container-exit {
         opacity: 1;
         transform: scale(1);
 
-        &.container-leave-active {
+        &.container-exit-active {
             opacity: 0;
             transform: scale(0.5);
             transition: opacity $animation-duration, transform $animation-duration;
