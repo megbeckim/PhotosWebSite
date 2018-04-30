@@ -25,14 +25,15 @@ export class Album extends Component {
                     <div className='album-wrapper'>
                       <div className='thumbnails'>
                         {
-                            this.props.album.chapters.map( (chapter, ix) => {
-                                return <div className='chapter' key={ix}>
+                            this.props.album.chapters.map( (chapter, chapterIx) => {
+                                return <div className='chapter' key={chapterIx}>
                                         <div className='chapter-title'>{chapter.title}</div>
                                         {
-                                            chapter.pictures.map( (picture, ix2) => {
-                                                return  <div key={ix2} className='fp-thumbnail'>
+                                            chapter.pictures.map( (picture, photoIx) => {
+                                                return  <div key={photoIx} className='fp-thumbnail'>
                                                     <img
-                                                    src={`${this.props.album.folder}/${picture.fileName}`} />
+                                                    src={`${this.props.album.folder}/${picture.fileName}`}
+                                                        onClick={ () => this.props.selectPhotoIx({ chapterIx, photoIx }) }/>
                                                 </div>
                                             })
                                         }

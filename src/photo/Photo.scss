@@ -1,0 +1,14 @@
+@import 'common';
+
+.photo-container {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}
