@@ -7,3 +7,16 @@ To run, enter the following command in a terminal:
 Then browse to:
 
     http://localhost:9000/
+
+
+Backlog:
+* view photo
+* go to next/prev photo
+* the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
+* show map of countries visited
+* send message to web master
+* show map of dive destinations
+
+
+Icebox:
+* go to next/prev album from within album
