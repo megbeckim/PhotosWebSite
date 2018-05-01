@@ -1,14 +1,34 @@
 @import 'common';
 
 .photo-container {
-    position: fixed;
+    position: absolute;
     height: 100%;
     width: 100%;
     background-color: black;
 
-    img {
+    >* {
+        position: fixed;
+    }
+
+    >img {
         height: 100%;
         width: 100%;
+    }
+
+    .background {
+        @include filter(blur(10px));
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
+
+    .photo {
         object-fit: contain;
+    }
+
+    .caption {
+        bottom: 0;
+        padding: $general-padding;
+        text-align: center;
+        @include outlineText;
     }
 }

@@ -65,7 +65,7 @@ $tileHeight: 300px;
             right: 0;
             text-align: right;
             padding: 15px;
-            text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+            @include outlineText;
         }
 
         .year {
