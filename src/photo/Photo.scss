@@ -28,6 +28,7 @@
     .caption {
         bottom: 0;
         padding: $general-padding;
+        width: 100%;
         text-align: center;
         @include outlineText;
     }
