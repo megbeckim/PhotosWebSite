@@ -13,6 +13,7 @@ export class Album extends Component {
     }
 
     render() {
+        var index = 0;
         return (
             <div className='album-container'>
                 <div className='album' ref={this.albumRef}>
@@ -26,18 +27,19 @@ export class Album extends Component {
                       <div className='thumbnails'>
                         {
                             this.props.album.chapters.map( (chapter, chapterIx) => {
-                                return <div className='chapter' key={chapterIx}>
+                                return <div key={chapterIx} className='chapter' key={chapterIx}>
                                         <div className='chapter-title'>{chapter.title}</div>
                                         {
                                             chapter.pictures.map( (picture, photoIx) => {
+                                                const thisIndex = index++;
                                                 return  <div key={photoIx} className='fp-thumbnail'>
                                                     <img
                                                     src={`${this.props.album.folder}/${picture.fileName}`}
-                                                        onClick={ () => this.props.selectPhotoIx({ chapterIx, photoIx }) }/>
-                                                </div>
+                                                        onClick={ () => this.props.selectPhotoIx(thisIndex) }/>
+                                                </div>;
                                             })
                                         }
-                                    </div>
+                                    </div>;
                             })
                         }
                       </div>

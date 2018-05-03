@@ -40,11 +40,11 @@ export class Site extends Component {
                     </CSSTransition>
                 }
 
-                { this.state.selectedPhotoIx &&
+                { this.state.selectedPhotoIx != null &&
                     <CSSTransition key='photo' classNames='container' timeout={ animationTimeout } >
                         <Photo album={ this.state.selectedAlbum }
                             photoIx={ this.state.selectedPhotoIx }
-                            unselectPhoto={ this.selectPhotoIx.bind(this, null) } />
+                            selectPhotoIx={ this.selectPhotoIx.bind(this) } />
                     </CSSTransition>
                 }
             </TransitionGroup>

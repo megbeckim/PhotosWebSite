@@ -6,11 +6,12 @@
     width: 100%;
     background-color: black;
 
-    >* {
-        position: fixed;
+    .carousel, .carousel-inner, .carousel-item {
+        height: 100%;
     }
 
-    >img {
+    .background, .photo {
+        position: fixed;
         height: 100%;
         width: 100%;
     }
@@ -27,9 +28,16 @@
 
     .caption {
         bottom: 0;
+        left: 0;
         padding: $general-padding;
         width: 100%;
         text-align: center;
         @include outlineText;
+    }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        height: 3em;
+        width: 3em;
+        background-size: 3em;
     }
 }
