@@ -7,12 +7,17 @@ export class Photo extends Component {
         this.state = { };
     }
 
-    next(e) {
-        this.props.selectPhotoIx(this.props.photoIx + 1);
+    previous(e) {
+        if (this.props.photoIx !== 0) {
+            this.props.selectPhotoIx(this.props.photoIx - 1);
+        }
     }
 
-    previous(e) {
-        this.props.selectPhotoIx(this.props.photoIx - 1);
+    next(e) {
+        const numberOfPictures = this.props.album.chapters.reduce((acc, chapter) => acc + chapter.pictures.length, 0);
+        if (this.props.photoIx !== numberOfPictures-1) {
+            this.props.selectPhotoIx(this.props.photoIx + 1);
+        }
     }
 
     close(e) {
@@ -32,8 +37,8 @@ export class Photo extends Component {
                             <CarouselItem key={ ix }>
                                 <img className='background' src={`${this.props.album.folder}/${picture.fileName}`} onClick={ this.close.bind(this) } />
                                 <img className='photo' src={`${this.props.album.folder}/${picture.fileName}`} onClick={ this.close.bind(this) } />
-                                <CarouselControl direction='prev' onClickHandler={ this.previous.bind(this) } />
-                                <CarouselControl direction='next' onClickHandler={ this.next.bind(this) } />
+                                { ix != 0 && <CarouselControl direction='prev' onClickHandler={ this.previous.bind(this) } /> }
+                                { ix != pictures.length-1 && <CarouselControl direction='next' onClickHandler={ this.next.bind(this) } /> }
                                 <CarouselCaption className='caption' captionText={ picture.caption } />
                             </CarouselItem>
                         )

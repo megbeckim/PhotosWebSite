@@ -12,8 +12,6 @@ Backlog:
 * don't show photos loading on album
 * don't show main photo loading
 * don't show photos loading on album catalog
-* don't run off the start or end of photo carousel
-* don't show nav buttons at start/end of carousel
 * when returning to the album, make sure to show the last photo looked at
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
 * show map of countries visited
