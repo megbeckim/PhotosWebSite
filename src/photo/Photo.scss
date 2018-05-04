@@ -35,9 +35,17 @@
         @include outlineText;
     }
 
+    .carousel-control-prev, .carousel-control-next {
+        top: 50%;
+        bottom: auto;
+        margin-top: -1.5em;
+        opacity: 1;
+    }
+
     .carousel-control-prev-icon, .carousel-control-next-icon {
         height: 3em;
         width: 3em;
         background-size: 3em;
+        filter: drop-shadow(0px 0px 3px #808080);
     }
 }
