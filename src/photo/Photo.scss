@@ -26,6 +26,18 @@
         object-fit: contain;
     }
 
+    &.show-controls {
+        .background, .caption, .carousel-control-prev, .carousel-control-next {
+            opacity: 1;
+            transition: opacity 1s;
+        }
+    }
+
+    .background, .caption, .carousel-control-prev, .carousel-control-next {
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
     .caption {
         bottom: 0;
         left: 0;
@@ -39,7 +51,6 @@
         top: 50%;
         bottom: auto;
         margin-top: -1.5em;
-        opacity: 1;
     }
 
     .carousel-control-prev-icon, .carousel-control-next-icon {

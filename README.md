@@ -9,6 +9,7 @@ Then browse to:
     http://localhost:9000/
 
 Backlog:
+* route for bookmarks/sharing
 * don't show photos loading on album
 * don't show main photo loading
 * don't show photos loading on album catalog
