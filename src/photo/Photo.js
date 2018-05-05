@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, CarouselItem, CarouselControl, CarouselCaption } from 'reactstrap';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 export class Photo extends Component {
     constructor(props) {
@@ -56,13 +56,14 @@ export class Photo extends Component {
                             <CarouselItem key={ ix }>
                                 <img className='background' src={`${this.props.album.folder}/${picture.fileName}`} />
                                 <img className='photo' src={`${this.props.album.folder}/${picture.fileName}`} />
-                                { ix != 0 && <CarouselControl direction='prev' onClickHandler={ this.previous.bind(this) } /> }
-                                { ix != pictures.length-1 && <CarouselControl direction='next' onClickHandler={ this.next.bind(this) } /> }
                                 <CarouselCaption className='caption' captionText={ picture.caption } />
                             </CarouselItem>
                         )
                     }
-                 </Carousel>
+                </Carousel>
+                <div className='close' onClick={ this.close.bind(this) } >X</div>
+                <div className={ classNames('prev', { disabled: this.props.photoIx === 0 }) } onClick={ this.previous.bind(this) }>&larr;</div>
+                <div className={ classNames('next', { disabled: this.props.photoIx === pictures.length-1 }) } onClick={ this.next.bind(this) }>&rarr;</div>
             </div>
           );
     }

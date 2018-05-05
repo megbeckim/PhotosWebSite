@@ -10,10 +10,10 @@ Then browse to:
 
 Backlog:
 * route for bookmarks/sharing
+* use better icons
 * don't show photos loading on album
 * don't show main photo loading
 * don't show photos loading on album catalog
-* when returning to the album, make sure to show the last photo looked at
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
 * show map of countries visited
 * send message to web master
@@ -21,3 +21,4 @@ Backlog:
 
 Icebox:
 * go to next/prev album from within album
+* when returning to the album, make sure to show the last photo looked at

@@ -5,6 +5,7 @@
     height: 100%;
     width: 100%;
     background-color: black;
+    color: white;
 
     .carousel, .carousel-inner, .carousel-item {
         height: 100%;
@@ -27,13 +28,13 @@
     }
 
     &.show-controls {
-        .background, .caption, .carousel-control-prev, .carousel-control-next {
+        .background, .caption, .prev, .next, .close {
             opacity: 1;
             transition: opacity 1s;
         }
     }
 
-    .background, .caption, .carousel-control-prev, .carousel-control-next {
+    .background, .caption, .prev, .next, .close {
         opacity: 0;
         transition: opacity 1s;
     }
@@ -47,16 +48,31 @@
         @include outlineText;
     }
 
-    .carousel-control-prev, .carousel-control-next {
-        top: 50%;
-        bottom: auto;
-        margin-top: -1.5em;
+    .prev, .next, .close {
+        font-size: 2em;
+        position: absolute;
+        margin: 25px;
+        @include filter(drop-shadow(0px 0px 3px #808080));
+        cursor: pointer;
     }
 
-    .carousel-control-prev-icon, .carousel-control-next-icon {
-        height: 3em;
-        width: 3em;
-        background-size: 3em;
-        @include filter(drop-shadow(0px 0px 3px #808080));
+    .prev {
+        left: 0;
+        top: 50%;
+    }
+
+    .next, .close {
+        right: 0;
+        top: 50%;
+    }
+
+    .close {
+        right: 0;
+        top: 0;
+        color: white;
+    }
+
+    .disabled {
+        display: none;
     }
 }
