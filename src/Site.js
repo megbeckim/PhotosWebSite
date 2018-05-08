@@ -26,7 +26,7 @@ export class Site extends Component {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
 
             return (<TransitionGroup>
-                    { album && <CSSTransition key='album' classNames='container' timeout={ animationTimeout }>
+                    { album && <CSSTransition classNames='container' timeout={ animationTimeout }>
                         <Album album={ album }/>
                     </CSSTransition> }
                 </TransitionGroup>);
@@ -36,7 +36,7 @@ export class Site extends Component {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
 
             return (<TransitionGroup>
-                    { album && <CSSTransition key='photo' classNames='container' timeout={ animationTimeout }>
+                    { album && <CSSTransition classNames='container' timeout={ animationTimeout }>
                         <Photo album={ album } photoIx={ +match.params.photoIx } history={ history }/>
                     </CSSTransition> }
                 </TransitionGroup>);
