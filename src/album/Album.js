@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
+import { homeRoute, photoRoute } from '../routes';
 
 export class Album extends Component {
     constructor(props) {
@@ -21,7 +22,7 @@ export class Album extends Component {
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>
-                            <Link to='/'><div>&larr;</div></Link>
+                            <Link to={ homeRoute() }><div>&larr;</div></Link>
                         </div>
                     </Headroom>
                     <div className='album-wrapper'>
@@ -34,7 +35,7 @@ export class Album extends Component {
                                             chapter.pictures.map( (picture, photoIx) => {
                                                 const thisIndex = index++;
                                                 return  <div key={photoIx} className='fp-thumbnail'>
-                                                    <Link to={ `/album/${this.props.album.title}/photo/${thisIndex}`}>
+                                                    <Link to={ photoRoute(this.props.album.title, thisIndex) }>
                                                         <img src={`${this.props.album.folder}/${picture.fileName}`}/>
                                                     </Link>
                                                 </div>;

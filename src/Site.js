@@ -4,6 +4,7 @@ import { Album } from './album/Album';
 import { Photo } from './photo/Photo';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { HashRouter, Route } from 'react-router-dom'
+import { homeRoute, albumRoute, photoRoute } from './routes';
 
 const animationTimeout = 500;
 
@@ -41,11 +42,11 @@ export class Site extends Component {
                 </TransitionGroup>);
         };
 
-        return (<HashRouter basename='/'>
+        return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
                     <AlbumCatalog model={ this.state.model }/>
-                    <Route path='/album/:title' children={ AlbumRoute }/>
-                    <Route path='/album/:title/photo/:photoIx' children={ PhotoRoute }/>
+                    <Route path={ albumRoute(':title') } children={ AlbumRoute }/>
+                    <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRoute }/>
                 </div>
             </HashRouter>);
     }
