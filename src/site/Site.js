@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AlbumCatalog } from './albumCatalog/AlbumCatalog';
-import { Album } from './album/Album';
-import { Photo } from './photo/Photo';
+import { AlbumCatalog } from '../albumCatalog/AlbumCatalog';
+import { Album } from '../album/Album';
+import { Photo } from '../photo/Photo';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { HashRouter, Route } from 'react-router-dom'
-import { homeRoute, albumRoute, photoRoute } from './routes';
+import { homeRoute, albumRoute, photoRoute } from '../routes';
 
 const animationTimeout = 500;
 

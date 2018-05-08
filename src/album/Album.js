@@ -22,7 +22,7 @@ export class Album extends Component {
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>
-                            <Link to={ homeRoute() }><div>&larr;</div></Link>
+                            <Link to={ homeRoute() }><div className='home'><img className='fas fa-home'/></div></Link>
                         </div>
                     </Headroom>
                     <div className='album-wrapper'>

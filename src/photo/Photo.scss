@@ -1,5 +1,7 @@
 @import 'common';
 
+$controls-animation-duration: 0.75s;
+
 .photo-container {
     position: absolute;
     height: 100%;
@@ -30,13 +32,13 @@
     &.show-controls {
         .background, .caption, .prev, .next, .close {
             opacity: 1;
-            transition: opacity 1s;
+            transition: opacity $controls-animation-duration;
         }
     }
 
     .background, .caption, .prev, .next, .close {
         opacity: 0;
-        transition: opacity 1s;
+        transition: opacity $controls-animation-duration;
     }
 
     .caption {
@@ -61,15 +63,20 @@
         top: 50%;
     }
 
+    .prev, .next {
+        top: 50%;
+        margin-top: -0.5em;
+    }
+
     .next, .close {
         right: 0;
-        top: 50%;
     }
 
     .close {
         right: 0;
         top: 0;
         color: white;
+        font-size: 1.5em;
     }
 
     .disabled {

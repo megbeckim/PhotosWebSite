@@ -9,12 +9,12 @@ Then browse to:
     http://localhost:9000/
 
 Backlog:
-* use better icons
+* transfer over all albums
+* show map of countries visited
 * don't show photos loading on album
 * don't show main photo loading
 * don't show photos loading on album catalog
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
-* show map of countries visited
 * send message to web master
 * show map of dive destinations
 

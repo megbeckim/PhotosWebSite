@@ -14,9 +14,11 @@
             flex-grow: 1;
         }
 
-        >div:nth-child(2) {
+        .home {
             text-align: right;
             cursor:pointer;
+            font-size: 1.1em;
+            line-height: 100px;
         }
     }
 

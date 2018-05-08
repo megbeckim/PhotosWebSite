@@ -30,18 +30,26 @@ export class Photo extends Component {
 
     showControls() {
         this.setState({ controlsShown: true });
-        this.resetTimer();
+        this.setTimer();
     }
 
-    resetTimer() {
+    clearTimer() {
         if (this.timer) {
             clearTimeout(this.timer);
         }
+    }
+
+    setTimer() {
+        this.clearTimer();
         this.timer = setTimeout(() => this.setState({ controlsShown: false }), 3000);
     }
 
     componentDidMount() {
-        this.resetTimer();
+        this.setTimer();
+    }
+
+    componentWillUnmount() {
+        this.clearTimer();
     }
 
     render() {
@@ -62,9 +70,9 @@ export class Photo extends Component {
                         )
                     }
                 </Carousel>
-                <div className='close' onClick={ this.close.bind(this) } >X</div>
-                <div className={ classNames('prev', { disabled: this.props.photoIx === 0 }) } onClick={ this.previous.bind(this) }>&larr;</div>
-                <div className={ classNames('next', { disabled: this.props.photoIx === pictures.length-1 }) } onClick={ this.next.bind(this) }>&rarr;</div>
+                <div className='close' onClick={ this.close.bind(this) } ><img className='fas fa-images'/></div>
+                <div className={ classNames('prev', { disabled: this.props.photoIx === 0 }) } onClick={ this.previous.bind(this) }><img className='fas fa-angle-left' /></div>
+                <div className={ classNames('next', { disabled: this.props.photoIx === pictures.length-1 }) } onClick={ this.next.bind(this) }><img className='fas fa-angle-right' /></div>
             </div>
           );
     }
