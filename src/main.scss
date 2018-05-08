@@ -13,7 +13,12 @@ body {
     height: 100%;
     width: 100%;
 
-    >.container-enter {
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .container-enter {
         opacity: 0;
         transform: scale(0.5);
 
@@ -24,7 +29,7 @@ body {
         }
     }
 
-    >.container-exit {
+    .container-exit {
         opacity: 1;
         transform: scale(1);
 

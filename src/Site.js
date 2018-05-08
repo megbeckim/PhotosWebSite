@@ -3,6 +3,7 @@ import { AlbumCatalog } from './albumCatalog/AlbumCatalog';
 import { Album } from './album/Album';
 import { Photo } from './photo/Photo';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { HashRouter, Route } from 'react-router-dom'
 
 const animationTimeout = 500;
 
@@ -17,37 +18,35 @@ export class Site extends Component {
             .then(model => this.setState({ model }));
     }
 
-    selectAlbum(album) {
-        this.setState({ selectedAlbum: album });
-    }
-
-    selectPhotoIx(selectedPhotoIx) {
-        this.setState({ selectedPhotoIx });
-    }
-
     render() {
-        return (
-            <TransitionGroup className='site'>
-                <AlbumCatalog model={ this.state.model }
-                    onAlbumSelected={ this.selectAlbum.bind(this) } />
+        if (!this.state.model) return null;
 
-                { this.state.selectedAlbum &&
-                    <CSSTransition key='album' classNames='container' timeout={ animationTimeout } >
-                        <Album album={ this.state.selectedAlbum }
-                            onAlbumUnselected={ this.selectAlbum.bind(this, null) }
-                            selectPhotoIx={ this.selectPhotoIx.bind(this) }
-                            />
-                    </CSSTransition>
-                }
+        const AlbumRoute = ({ match, ...props}) => {
+            const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
 
-                { this.state.selectedPhotoIx != null &&
-                    <CSSTransition key='photo' classNames='container' timeout={ animationTimeout } >
-                        <Photo album={ this.state.selectedAlbum }
-                            photoIx={ this.state.selectedPhotoIx }
-                            selectPhotoIx={ this.selectPhotoIx.bind(this) } />
-                    </CSSTransition>
-                }
-            </TransitionGroup>
-        );
+            return (<TransitionGroup>
+                    { album && <CSSTransition key='album' classNames='container' timeout={ animationTimeout }>
+                        <Album album={ album }/>
+                    </CSSTransition> }
+                </TransitionGroup>);
+        };
+
+        const PhotoRoute = ({ match, history, ...props}) => {
+            const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
+
+            return (<TransitionGroup>
+                    { album && <CSSTransition key='photo' classNames='container' timeout={ animationTimeout }>
+                        <Photo album={ album } photoIx={ +match.params.photoIx } history={ history }/>
+                    </CSSTransition> }
+                </TransitionGroup>);
+        };
+
+        return (<HashRouter basename='/'>
+                <div className='site'>
+                    <AlbumCatalog model={ this.state.model }/>
+                    <Route path='/album/:title' children={ AlbumRoute }/>
+                    <Route path='/album/:title/photo/:photoIx' children={ PhotoRoute }/>
+                </div>
+            </HashRouter>);
     }
 }

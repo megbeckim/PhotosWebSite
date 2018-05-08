@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Headroom from 'react-headroom';
+import { Link } from 'react-router-dom'
 
 const albumTitlePattern = /(.*?) (.*)/;
 
@@ -49,10 +50,12 @@ export class AlbumCatalog extends Component {
                                         const [, , title] = album.title.match(albumTitlePattern);
 
                                         return <div key={`${year}-${ix}`} className='year-and-album'>
-                                            { ix == 0 && <div key={year} className='year'><div>{year}</div></div> }
-                                            <div key={ix} className='album' onClick={ () => this.props.onAlbumSelected(album) } >
-                                              <img src={`${album.folder}/${album.coverImage}`} />
-                                              <div className='title'>{title}</div>
+                                            { ix == 0 && <div key={ year } className='year'><div>{ year }</div></div> }
+                                            <div key={ix} className='album'>
+                                                <Link to={ `/album/${album.title}` }>
+                                                    <img src={ `${ album.folder }/${ album.coverImage }` } />
+                                                    <div className='title'>{ title }</div>
+                                                </Link>
                                             </div>
                                         </div>;
                                         })
