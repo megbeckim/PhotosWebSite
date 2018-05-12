@@ -56,7 +56,9 @@ export class Photo extends Component {
         const pictures = this.props.album.chapters.reduce((acc, chapter) => acc.concat(chapter.pictures), []);
         const picture = pictures[this.props.photoIx];
         return (
-            <div className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) } onClick={ this.showControls.bind(this) } >
+            <div className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) }
+                    onClick={ this.showControls.bind(this) }
+                    onMouseMove={ this.showControls.bind(this) } >
                 <Carousel activeIndex={ this.props.photoIx }
                         interval={ false }
                         next={ this.next.bind(this) } previous={ this.previous.bind(this) }>
