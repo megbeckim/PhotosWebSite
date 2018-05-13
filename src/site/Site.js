@@ -22,12 +22,12 @@ export class Site extends Component {
     render() {
         if (!this.state.model) return null;
 
-        const AlbumRoute = ({ match, history, ...props}) => {
+        const AlbumRoute = ({ match, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
 
             return (<TransitionGroup>
                     { album && <CSSTransition classNames='container' timeout={ animationTimeout }>
-                        <Album album={ album } history={ history } match={ match }/>
+                        <Album album={ album }/>
                     </CSSTransition> }
                 </TransitionGroup>);
         };

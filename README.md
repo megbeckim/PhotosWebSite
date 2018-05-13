@@ -28,6 +28,8 @@ exit
 
 *Backlog*
 
+* full screen
+* why does headroom get disabled based on match?
 * menu bar on home page is not sticky until a click has been made!!!!
 * album icon is ambiguous
 * show map of countries visited
