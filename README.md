@@ -25,8 +25,6 @@ put bundle.js
 
 *Backlog*
 
-* escape key should take from photo to album
-* escape key should take from album to album catalog
 * menu bar on home page is not sticky until a click has been made!!!!
 * album icon is ambiguous
 * show map of countries visited

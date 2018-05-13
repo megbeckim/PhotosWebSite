@@ -3,6 +3,8 @@ import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { homeRoute, photoRoute } from '../routes';
 
+const ESCAPE_KEY_CODE = 27;
+
 export class Album extends Component {
     constructor(props) {
         super(props);
@@ -12,13 +14,22 @@ export class Album extends Component {
 
     componentDidMount() {
         this.setState( { albumRefCurrent: this.albumRef.current } );
+        this.albumRef.current.focus();
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.match.isExact) {
+            this.albumRef.current.focus();
+        }
     }
 
     render() {
         var index = 0;
         return (
             <div className='album-container'>
-                <div className='album' ref={this.albumRef}>
+                <div className='album' ref={this.albumRef}
+                        onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.props.history.push(homeRoute()); } }
+                        tabIndex='0'>
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>
