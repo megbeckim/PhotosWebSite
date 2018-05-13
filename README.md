@@ -14,6 +14,7 @@ Then browse to:
 
 Type the following commands into a terminal:
 
+webpack
 ftp u38759711@home136177518.1and1-data.host
 <<enter password>>
 cd sandbox4
@@ -22,6 +23,8 @@ lcd /Users/timothy/IdeaProjects/PhotosWebSite
 put index.html
 lcd bin
 put bundle.js
+close
+exit
 
 *Backlog*
 
