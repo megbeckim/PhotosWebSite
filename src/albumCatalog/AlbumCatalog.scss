@@ -25,16 +25,18 @@ $tileHeight: 300px;
             position: relative;
         }
 
-        .branding>div:nth-child(3) {
-            flex-grow: 1;
-        }
-
         .branding>div>div {
             font-size: .5em;
             position: absolute;
             bottom: -30px;
             right: 0;
             height: 100%;
+        }
+
+        .resizeScreen {
+            width: 2em;
+            height: 2em;
+            cursor: pointer;
         }
     }
 

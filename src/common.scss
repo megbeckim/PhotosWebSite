@@ -5,7 +5,7 @@ $animation-duration: 0.5s;
 
 @mixin hover {
     overflow: hidden;
-    cursor:pointer;
+    cursor: pointer;
 
     img {
         width: 100%;
@@ -51,4 +51,8 @@ $animation-duration: 0.5s;
 
 @mixin outlineText {
     text-shadow: 1px 1px #808080, -1px 1px #808080, 1px -1px #808080, -1px -1px #808080;
+}
+
+.spring {
+    flex-grow: 1;
 }

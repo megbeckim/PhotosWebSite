@@ -4,17 +4,57 @@ import { Link } from 'react-router-dom'
 import { albumRoute } from '../routes';
 
 const albumTitlePattern = /(.*?) (.*)/;
+const screenChangeEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'];
+
+function isFullScreen() {
+    const doc = window.document;
+
+    return doc.fullscreenElement
+        || doc.mozFullScreenElement
+        || doc.webkitFullscreenElement
+        || doc.msFullscreenElement;
+}
 
 export class AlbumCatalog extends Component {
     constructor(props) {
         super(props);
         this.albumCatalogRef = React.createRef();
-        this.state = { };
+        this.state = { fullScreen: false };
+    }
+
+    updateFullScreenState() {
+        this.setState({ fullScreen: isFullScreen() });
+    }
+
+    componentDidMount() {
+        screenChangeEvents.forEach(
+            eventType => document.addEventListener(eventType, this.updateFullScreenState.bind(this), false)
+        );
     }
 
     componentDidUpdate() {
         if (this.albumCatalogRef.current != this.state.albumCatalogRefCurrent) {
             this.setState( { albumCatalogRefCurrent: this.albumCatalogRef.current } );
+        }
+    }
+
+    toggleFullScreen() {
+        const doc = window.document;
+        const docEl = doc.documentElement;
+
+        const requestFullScreen = docEl.requestFullscreen
+            || docEl.mozRequestFullScreen
+            || docEl.webkitRequestFullScreen
+            || docEl.msRequestFullscreen;
+        const cancelFullScreen = doc.exitFullscreen
+            || doc.mozCancelFullScreen
+            || doc.webkitExitFullscreen
+            || doc.msExitFullscreen;
+
+        if(isFullScreen()) {
+            cancelFullScreen.call(doc);
+        } else {
+            requestFullScreen.call(docEl);
         }
     }
 
@@ -39,8 +79,11 @@ export class AlbumCatalog extends Component {
                             <div className='branding'>
                                 <div>Fagan</div>
                                 <div>Photos<div>.com</div></div>
-                                <div></div>
                             </div>
+                            <div className='spring'></div>
+                            <img className='resizeScreen'
+                                src={ `Full-Screen-${ this.state.fullScreen ? 'Collapse' : 'Expand'}-128.png` }
+                                onClick={ this.toggleFullScreen.bind(this) } />
                         </div>
                     </Headroom>
                     <div className='album-catalog-wrapper'>
