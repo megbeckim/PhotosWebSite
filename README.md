@@ -14,25 +14,14 @@ Then browse to:
 
 Type the following commands into a terminal:
 
-webpack
-ftp u38759711@home136177518.1and1-data.host
-<<enter password>>
-cd sandbox4
-bin
-lcd /Users/timothy/IdeaProjects/PhotosWebSite
-put index.html
-put Full-Screen-Collapse-128.png
-put Full-Screen-Expand-128.png
-lcd bin
-put bundle.js
-close
-exit
+   ./deploy.sh
+
+Provide the password for the FTP account.
 
 *Backlog*
 
 * hiding prev/next on touch devices (e.g., phones)
-* can't see caption on phone when in full screen
-* why does headroom get disabled based on match?
+* why does the code disable headroom based on match? can this be removed
 * menu bar on home page is not sticky until a click has been made!!!!
 * album icon is ambiguous
 * show map of countries visited

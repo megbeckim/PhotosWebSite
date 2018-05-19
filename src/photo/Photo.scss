@@ -42,10 +42,11 @@ $controls-animation-duration: 0.75s;
     }
 
     .caption {
+        position: absolute;
         bottom: 0;
         left: 0;
+        right: 0;
         padding: $general-padding;
-        width: 100%;
         text-align: center;
         @include outlineText;
     }

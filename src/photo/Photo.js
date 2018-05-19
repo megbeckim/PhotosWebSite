@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, CarouselItem, CarouselControl, CarouselCaption } from 'reactstrap';
+import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 import Swipeable from 'react-swipeable'
 import classNames from 'classnames';
 import { albumRoute, photoRoute } from '../routes';
@@ -69,7 +69,7 @@ export class Photo extends Component {
                                 <CarouselItem key={ ix }>
                                     <img className='background' src={`${this.props.album.folder}/${picture.fileName}`} />
                                     <img className='photo' src={`${this.props.album.folder}/${picture.fileName}`} />
-                                    <CarouselCaption className='caption' captionText={ picture.caption } />
+                                    <div className='caption' >{ picture.caption }</div>
                                 </CarouselItem>
                             )
                         }
