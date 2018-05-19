@@ -21,8 +21,6 @@ Provide the password for the FTP account.
 *Backlog*
 
 * hiding prev/next on touch devices (e.g., phones)
-* why does the code disable headroom based on match? can this be removed
-* menu bar on home page is not sticky until a click has been made!!!!
 * album icon is ambiguous
 * show map of countries visited
 * fix videos (which means support videos!), or else remove them

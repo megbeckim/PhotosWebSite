@@ -27,15 +27,10 @@ export class AlbumCatalog extends Component {
     }
 
     componentDidMount() {
+        this.setState( { albumCatalogRefCurrent: this.albumCatalogRef.current } );
         screenChangeEvents.forEach(
             eventType => document.addEventListener(eventType, this.updateFullScreenState.bind(this), false)
         );
-    }
-
-    componentDidUpdate() {
-        if (this.albumCatalogRef.current != this.state.albumCatalogRefCurrent) {
-            this.setState( { albumCatalogRefCurrent: this.albumCatalogRef.current } );
-        }
     }
 
     toggleFullScreen() {
