@@ -1,7 +1,5 @@
 @import 'common';
 
-$controls-animation-duration: 0.75s;
-
 .map-container {
     > a {
         position: absolute;
@@ -13,24 +11,63 @@ $controls-animation-duration: 0.75s;
         text-align: center;
     }
 
+    .map {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        transition: opacity $animation-duration;
+        &.hidden {
+            opacity: 0;
+        }
+    }
+
     position: absolute;
     height: 100%;
     width: 100%;
     background-color: black;
     color: white;
-}
 
-.google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child {
-    display: none;
-}
+    .legend {
+        position: absolute;
+        bottom: 0;
+        margin: $general-padding;
 
-li.google-visualization-tooltip-item {
-    margin: 0 !important;
-    padding: 0 1em !important;
-    line-height: 2em;
-    height: 100%;
-    width: auto !important;
-    text-align: center;
+        background-color: white;
+        color: black;
+        font-size: 0.4em;
+        padding: 0.5em;
+        line-height: 1.2em;
+
+        &::before {
+            content: "Legend";
+            text-decoration: underline
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            position: relative;
+            list-style: none;
+            margin-left: 1.5em;
+            &::before {
+                content: " ";
+                position: absolute;
+                left: -1.5em;
+                width: 1em;
+                height: 1em;
+            }
+        }
+
+        li.visited::before {
+            background-color: green;
+        }
+        li.want-to-visit::before {
+            background-color: yellow;
+        }
+    }
 }
 
 .google-visualization-tooltip {
@@ -41,4 +78,17 @@ li.google-visualization-tooltip-item {
 
 ul.google-visualization-tooltip-item-list {
     margin: 0;
+
+    li.google-visualization-tooltip-item {
+        margin: 0 !important;
+        padding: 0 1em !important;
+        line-height: 2em;
+        height: 100%;
+        width: auto !important;
+        text-align: center;
+
+        &:first-child {
+             display: none;
+         }
+    }
 }

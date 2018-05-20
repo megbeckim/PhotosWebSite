@@ -20,19 +20,25 @@ Provide the password for the FTP account.
 
 *Backlog*
 
-* show map of countries visited
-* hiding prev/next on touch devices (e.g., phones)
-* album icon is ambiguous
 * fix videos (which means support videos!), or else remove them
-* don't show photos loading on album
-* don't show main photo loading
-* don't show photos loading on album catalog
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
 * send message to web master
 * show map of dive destinations
 * better accessibility for phones (e.g., controls at bottom/center? swipe for next photo?)
 
+*UX improvements*
+
+* style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean
+* full-screen from places other than home page?
+* album icon is ambiguous: perhaps a consistent back-button would be better
+* don't show photos loading on album
+* don't show main photo loading
+* don't show photos loading on album catalog
+* hiding prev/next on touch devices (e.g., phones)
+
+
 *Icebox*
+
 * go to next/prev album from within album
 * when returning to the album, make sure to show the last photo looked at
 
