@@ -1,0 +1,44 @@
+@import 'common';
+
+$controls-animation-duration: 0.75s;
+
+.map-container {
+    > a {
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        line-height: 2em;
+        width: 2em;
+        height: 2em;
+        text-align: center;
+    }
+
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: white;
+}
+
+.google-visualization-tooltip-item-list .google-visualization-tooltip-item:first-child {
+    display: none;
+}
+
+li.google-visualization-tooltip-item {
+    margin: 0 !important;
+    padding: 0 1em !important;
+    line-height: 2em;
+    height: 100%;
+    width: auto !important;
+    text-align: center;
+}
+
+.google-visualization-tooltip {
+    height: auto !important;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+ul.google-visualization-tooltip-item-list {
+    margin: 0;
+}

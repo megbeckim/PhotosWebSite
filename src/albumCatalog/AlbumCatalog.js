@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
-import { albumRoute } from '../routes';
+import { mapRoute, albumRoute } from '../routes';
 
 const albumTitlePattern = /(.*?) (.*)/;
 const screenChangeEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'];
@@ -79,6 +79,9 @@ export class AlbumCatalog extends Component {
                             <img className='resizeScreen'
                                 src={ `Full-Screen-${ this.state.fullScreen ? 'Collapse' : 'Expand'}-128.png` }
                                 onClick={ this.toggleFullScreen.bind(this) } />
+                            <Link to={ mapRoute() }>
+                                <img className='map fas fa-globe' />
+                            </Link>
                         </div>
                     </Headroom>
                     <div className='album-catalog-wrapper'>

@@ -33,10 +33,20 @@ $tileHeight: 300px;
             height: 100%;
         }
 
-        .resizeScreen {
+        .resizeScreen, .map {
             width: 2em;
             height: 2em;
             cursor: pointer;
+        }
+
+        >a {
+            width: 2em;
+        }
+
+        .map {
+            height: 100%;
+            width: 100%;
+            padding: 0.33em;
         }
     }
 

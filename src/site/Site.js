@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { AlbumCatalog } from '../albumCatalog/AlbumCatalog';
 import { Album } from '../album/Album';
 import { Photo } from '../photo/Photo';
+import { Map } from '../map/Map';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { HashRouter, Route } from 'react-router-dom'
-import { homeRoute, albumRoute, photoRoute } from '../routes';
+import { homeRoute, albumRoute, photoRoute, mapRoute } from '../routes';
 
 const animationTimeout = 500;
 
@@ -42,11 +43,20 @@ export class Site extends Component {
                 </TransitionGroup>);
         };
 
+        const MapRoute = ({ match, ...props}) => {
+            return (<TransitionGroup>
+                    { match && <CSSTransition classNames='container' timeout={ animationTimeout }>
+                        <Map/>
+                    </CSSTransition> }
+                </TransitionGroup>);
+        };
+
         return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
                     <AlbumCatalog model={ this.state.model }/>
                     <Route path={ albumRoute(':title') } children={ AlbumRoute }/>
                     <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRoute }/>
+                    <Route path={ mapRoute() } children={ MapRoute }/>
                 </div>
             </HashRouter>);
     }

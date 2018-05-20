@@ -20,9 +20,9 @@ Provide the password for the FTP account.
 
 *Backlog*
 
+* show map of countries visited
 * hiding prev/next on touch devices (e.g., phones)
 * album icon is ambiguous
-* show map of countries visited
 * fix videos (which means support videos!), or else remove them
 * don't show photos loading on album
 * don't show main photo loading
