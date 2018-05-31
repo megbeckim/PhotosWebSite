@@ -16,7 +16,7 @@ Type the following commands into a terminal:
 
    ./deploy.sh
 
-Provide the password for the FTP account.
+Provide the password for the FTP account, which is the usual password since the UK.
 
 *Backlog*
 

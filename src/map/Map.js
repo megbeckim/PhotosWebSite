@@ -4,6 +4,12 @@ import { homeRoute } from '../routes';
 import { Chart } from 'react-google-charts';
 import classNames from 'classnames';
 
+const seaColour = '#000';
+const visitedColour = '#8f8';
+const wantToVisitColour = '#dd0';
+const notVisitedColour = '#888';
+const missingColour = '#f00';
+
 export class Map extends Component {
     constructor(props) {
         super(props);
@@ -19,11 +25,12 @@ export class Map extends Component {
         const options = {
             legend: 'none',
             tooltip: {
-                    isHtml: true
+                    isHtml: true,
+                    textStyle: { color: 'white' }
                 },
-            colorAxis: {colors: ['brown', 'yellow', 'green']},
-            backgroundColor: '#888',
-            datalessRegionColor: '#f8bbd0'
+            colorAxis: {colors: [notVisitedColour, wantToVisitColour, visitedColour]},
+            backgroundColor: seaColour,
+            datalessRegionColor: missingColour
         };
 
         const chartEvents = [
@@ -51,7 +58,7 @@ export class Map extends Component {
                 <div className='legend'>
                     <ul>
                         <li className='visited'>Visited</li>
-                        <li className='want-to-visit'>Want to visit</li>
+                        <li className='want-to-visit'>To visit</li>
                     </ul>
                 </div>
             </div>
