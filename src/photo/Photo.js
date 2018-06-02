@@ -67,7 +67,11 @@ export class Photo extends Component {
                         {
                             pictures.map( (picture, ix) =>
                                 <CarouselItem key={ ix }>
-                                    <img className='photo' src={`${this.props.album.folder}/${picture.fileName}`} />
+                                    {
+                                        picture.fileName.endsWith('.mp4')
+                                            ? <video className='photo' controls={ true } src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                            : <img className='photo' src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                    }
                                     <div className='caption' >{ picture.caption }</div>
                                 </CarouselItem>
                             )

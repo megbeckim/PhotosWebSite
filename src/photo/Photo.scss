@@ -40,6 +40,7 @@ $controls-animation-duration: 0.75s;
         font-size: 0.7em;
         padding: $general-padding;
         text-align: center;
+        pointer-events: none; // so doesn't stop events going to the video controls!
         @include outlineText;
     }
 

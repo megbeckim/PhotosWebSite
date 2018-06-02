@@ -20,12 +20,11 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Backlog*
 
-* fix portrait/fullscreen on mobile not to have too big a font!
 * fix videos (which means support videos!), or else remove them
+* fix portrait/fullscreen on mobile not to have too big a font!
 * when returning to the album, make sure to show the last photo looked at
+* updating document title when navigating
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
-* send message to web master
-* show map of dive destinations
 * better accessibility for phones (e.g., controls at bottom/center? swipe for next photo?)
 
 *UX improvements*
@@ -41,6 +40,8 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Icebox*
 
+* send message to web master
+* show map of dive destinations
 * go to next/prev album from within album
 
 
