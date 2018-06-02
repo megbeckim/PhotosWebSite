@@ -33,7 +33,11 @@ export class Album extends Component {
                                            const thisIndex = index++;
                                            return  <div key={`${chapterIx}-${photoIx}`} className='fp-thumbnail'>
                                                <Link to={ photoRoute(this.props.album.title, thisIndex) }>
-                                                   <img src={`${this.props.album.folder}/${picture.fileName}`}/>
+                                                   {
+                                                       picture.fileName.endsWith('.mp4')
+                                                           ? <video className='photo' controls={ false } src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                                           : <img className='photo' src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                                   }
                                                    { photoIx===0 && <div key={chapterIx} className='chapter-title'>{chapter.title}</div> }
                                                </Link>
                                            </div>;
