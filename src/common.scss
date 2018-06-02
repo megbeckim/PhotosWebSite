@@ -28,6 +28,7 @@ $animation-duration: 0.5s;
     display: flex;
     background: black;
     box-shadow: 0 4px 11px 0 rgba(0, 0, 0, 0.5);
+    z-index: 99;
 }
 
 @mixin card {
@@ -38,6 +39,11 @@ $animation-duration: 0.5s;
     >div {
         overflow: scroll;
         height: 100%;
+    }
+
+    .headroom-wrapper {
+        position: relative;
+        z-index: 99;
     }
 }
 

@@ -67,7 +67,6 @@ export class Photo extends Component {
                         {
                             pictures.map( (picture, ix) =>
                                 <CarouselItem key={ ix }>
-                                    <img className='background' src={`${this.props.album.folder}/${picture.fileName}`} />
                                     <img className='photo' src={`${this.props.album.folder}/${picture.fileName}`} />
                                     <div className='caption' >{ picture.caption }</div>
                                 </CarouselItem>

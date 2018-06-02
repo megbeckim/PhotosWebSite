@@ -20,7 +20,9 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Backlog*
 
+* fix portrait/fullscreen on mobile not to have too big a font!
 * fix videos (which means support videos!), or else remove them
+* when returning to the album, make sure to show the last photo looked at
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
 * send message to web master
 * show map of dive destinations
@@ -40,6 +42,5 @@ Provide the password for the FTP account, which is the usual password since the 
 *Icebox*
 
 * go to next/prev album from within album
-* when returning to the album, make sure to show the last photo looked at
 
 

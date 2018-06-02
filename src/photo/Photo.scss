@@ -13,30 +13,21 @@ $controls-animation-duration: 0.75s;
         height: 100%;
     }
 
-    .background, .photo {
+    .photo {
         position: fixed;
         height: 100%;
         width: 100%;
-    }
-
-    .background {
-        @include filter(blur(10px));
-        transform: scale(1.05);
-        opacity: 0.85;
-    }
-
-    .photo {
         object-fit: contain;
     }
 
     &.show-controls {
-        .background, .caption, .prev, .next, .close {
+        .caption, .prev, .next, .close {
             opacity: 1;
             transition: opacity $controls-animation-duration;
         }
     }
 
-    .background, .caption, .prev, .next, .close {
+    .caption, .prev, .next, .close {
         opacity: 0;
         transition: opacity $controls-animation-duration;
     }
@@ -46,6 +37,7 @@ $controls-animation-duration: 0.75s;
         bottom: 0;
         left: 0;
         right: 0;
+        font-size: 0.7em;
         padding: $general-padding;
         text-align: center;
         @include outlineText;

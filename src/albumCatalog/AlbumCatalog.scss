@@ -77,23 +77,19 @@ $tileHeight: 300px;
             right: 0;
             text-align: right;
             padding: 15px;
+            font-size: 0.6em;
             @include outlineText;
         }
 
         .year {
-            width: $yearTileWidth;
             overflow-wrap: break-word;
-            text-align: center;
-            background-color: black;
-            color: white;
 
             div {
-                transform: rotate(-90deg) perspective(1px);
-                 width: $tileHeight;
                  position: absolute;
-                 left: -(($tileHeight - $yearTileWidth)/2);
-                 top: (($tileHeight - $yearTileWidth)/2);
+                 left: 18px;
                  line-height: $yearTileWidth;
+                 @include outlineText;
+                 z-index: 1;
             }
         }
     }

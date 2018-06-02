@@ -12,6 +12,10 @@
 
         >div:nth-child(1) {
             flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 0;
         }
 
         .home {
@@ -26,24 +30,26 @@
         .thumbnails {
             overflow: hidden;
             background-color: black;
+            display: flex;
+            flex-flow: wrap;
 
-            .chapter {
-                display: flex;
-                flex-flow: wrap;
+            >* {
+                height: 300px;
+                width: 300px;
+            }
 
-                >* {
-                    height: 300px;
-                    width: 300px;
-                }
+            .chapter-title {
+                position: absolute;
+                left: 5px;
+                top: 5px;
+                padding: 15px;
+                @include outlineText;
+            }
 
-                .chapter-title {
-                    padding: 25px;
-                }
-
-                .fp-thumbnail {
-                    flex-grow: 1;
-                    @include hover;
-                }
+            .fp-thumbnail {
+                flex-grow: 1;
+                position: relative;
+                @include hover;
             }
         }
     }
