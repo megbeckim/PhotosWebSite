@@ -15,7 +15,7 @@ export class Site extends Component {
 
         this.state = { };
 
-        fetch('https://script.google.com/macros/s/AKfycbxtkKbLArbu1ehXE-Rv-is5EGlwDFejP5rBYluB/exec')
+        fetch('model.json')
             .then(response => response.json())
             .then(model => this.setState({ model }));
     }
@@ -25,10 +25,11 @@ export class Site extends Component {
 
         const AlbumRoute = ({ match, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
+            const photoIx = match && match.params.photoIx;
 
             return (<TransitionGroup>
                     { album && <CSSTransition classNames='container' timeout={ animationTimeout }>
-                        <Album album={ album }/>
+                        <Album album={ album } photoIx={ photoIx }/>
                     </CSSTransition> }
                 </TransitionGroup>);
         };
@@ -54,7 +55,7 @@ export class Site extends Component {
         return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
                     <AlbumCatalog model={ this.state.model }/>
-                    <Route path={ albumRoute(':title') } children={ AlbumRoute }/>
+                    <Route path={ albumRoute(':title') + '/:dummy?/:photoIx?' } children={ AlbumRoute }/>
                     <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRoute }/>
                     <Route path={ mapRoute() } children={ MapRoute }/>
                 </div>

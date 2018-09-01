@@ -2,16 +2,35 @@ import React, { Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { homeRoute, photoRoute } from '../routes';
+import { matchPath } from 'react-router'
 
 export class Album extends Component {
     constructor(props) {
         super(props);
         this.albumRef = React.createRef();
+        this.visiblePhotoRef = React.createRef();
         this.state = { };
     }
 
     componentDidMount() {
         this.setState( { albumRefCurrent: this.albumRef.current } );
+    }
+
+    componentDidUpdate() {
+        if(!this.props.photoIx && this.state.mostRecentPhotoViewed) {
+            // was the user was viewing backward
+            const backward = this.state.secondMostRecentPhotoViewed
+                && Number(this.state.secondMostRecentPhotoViewed) > Number(this.state.mostRecentPhotoViewed);
+            this.visiblePhotoRef.current.scrollIntoView(backward);
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.photoIx) {
+            return { mostRecentPhotoViewed: props.photoIx, secondMostRecentPhotoViewed: state.mostRecentPhotoViewed };
+        } else {
+            return null;
+        }
     }
 
     render() {
@@ -31,7 +50,8 @@ export class Album extends Component {
                             this.props.album.chapters.map( (chapter, chapterIx) =>
                                     chapter.pictures.map( (picture, photoIx) => {
                                            const thisIndex = index++;
-                                           return  <div key={`${chapterIx}-${photoIx}`} className='fp-thumbnail'>
+                                           return  <div key={`${chapterIx}-${photoIx}`} className='fp-thumbnail'
+                                                ref={ thisIndex == this.state.mostRecentPhotoViewed ? this.visiblePhotoRef : null }>
                                                <Link to={ photoRoute(this.props.album.title, thisIndex) }>
                                                    {
                                                        picture.fileName.endsWith('.mp4')

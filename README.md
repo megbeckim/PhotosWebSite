@@ -22,13 +22,13 @@ Provide the password for the FTP account, which is the usual password since the 
 
 * fix videos (which means support videos!), or else remove them
 * fix portrait/fullscreen on mobile not to have too big a font!
-* when returning to the album, make sure to show the last photo looked at
 * updating document title when navigating
-* the drop shadow is _just_ visible when the headers scroll away, which means the top of the picture is never 100% clear
+* the drop shadow is _just_ visible when the headers scroll away, which means the top of the top picture is never 100% clear
 * better accessibility for phones (e.g., controls at bottom/center? swipe for next photo?)
 
 *UX improvements*
 
+* see how it looks with always square thumbnails (tricky on last line!)
 * style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean
 * full-screen from places other than home page?
 * album icon is ambiguous: perhaps a consistent back-button would be better
