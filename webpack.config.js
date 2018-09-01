@@ -35,6 +35,16 @@ module.exports = {
         }),
     ],
     devServer: {
-            port: 9000
+        port: 9000,
+        proxy: {
+            '/**': {
+                target: 'http://faganphotos.com:80',
+                changeOrigin: true,
+                secure: false,
+                bypass: function(req, res, proxyOptions) {
+                    return req.path === 'model.json';
+                }
             }
+        }
+    }
 };
