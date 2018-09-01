@@ -20,6 +20,7 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Backlog*
 
+* remove 'albums' from spreadsheet, and then instead of having to remove it from thumb.php5 param, add it to full-sized photo src
 * fix videos (which means support videos!), or else remove them
 * fix portrait/fullscreen on mobile not to have too big a font!
 * updating document title when navigating

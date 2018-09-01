@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { mapRoute, albumRoute } from '../routes';
+import { Thumbnail } from '../thumbnail/Thumbnail';
 
 const albumTitlePattern = /(.*?) (.*)/;
 const screenChangeEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'];
+const img = <img/>;
 
 function isFullScreen() {
     const doc = window.document;
@@ -90,12 +92,13 @@ export class AlbumCatalog extends Component {
                                 years.map( (year, index) => {
                                     return groupedByYear[year].map((album, ix) => {
                                         const [, , title] = album.title.match(albumTitlePattern);
+                                        const folder = album.folder.substring('albums/'.length);
 
                                         return <div key={`${year}-${ix}`} className='year-and-album'>
                                             { ix == 0 && <div key={ year } className='year'><div>{ year }</div></div> }
                                             <div key={ix} className='album'>
                                                 <Link to={ albumRoute(album.title) }>
-                                                    <img src={ `${ album.folder }/${ album.coverImage }` } />
+                                                    <Thumbnail component={ img } src={ width => `thumb.php5?album=${folder}&fileName=${album.coverImage}&width=${width}` } />
                                                     <div className='title'>{ title }</div>
                                                 </Link>
                                             </div>

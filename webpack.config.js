@@ -42,7 +42,13 @@ module.exports = {
                 changeOrigin: true,
                 secure: false,
                 bypass: function(req, res, proxyOptions) {
-                    return req.path === 'model.json';
+                    var bypass = req.path !== '/model.json'
+                        && !req.path.startsWith('/albums')
+                        && !req.path.startsWith('/thumb.php5');
+                    if (bypass) {
+                        return req.path;
+                    }
+                    return bypass;
                 }
             }
         }
