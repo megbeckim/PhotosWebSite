@@ -4,10 +4,13 @@ import Swipeable from 'react-swipeable'
 import classNames from 'classnames';
 import { albumRoute, photoRoute } from '../routes';
 
+const ESCAPE_KEY_CODE = 27;
+
 export class Photo extends Component {
     constructor(props) {
         super(props);
         this.state = { controlsShown: true };
+        this.ref = React.createRef();
     }
 
     previous() {
@@ -47,6 +50,7 @@ export class Photo extends Component {
 
     componentDidMount() {
         this.setTimer();
+        this.ref.current.focus();
     }
 
     componentWillUnmount() {
@@ -57,9 +61,11 @@ export class Photo extends Component {
         const pictures = this.props.album.chapters.reduce((acc, chapter) => acc.concat(chapter.pictures), []);
         const picture = pictures[this.props.photoIx];
         return (
-            <div className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) }
+            <div ref={this.ref} className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) }
                     onClick={ this.showControls.bind(this) }
-                    onMouseMove={ this.showControls.bind(this) } >
+                    onMouseMove={ this.showControls.bind(this) }
+                    onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
+                    tabIndex='0'>
                 <Swipeable onSwipedLeft={ this.next.bind(this) } onSwipedRight={ this.previous.bind(this) } className='photo-container'>
                     <Carousel activeIndex={ this.props.photoIx }
                             interval={ false }

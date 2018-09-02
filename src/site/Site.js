@@ -23,7 +23,7 @@ export class Site extends Component {
     render() {
         if (!this.state.model) return null;
 
-        const AlbumRoute = ({ match, ...props}) => {
+        const AlbumRoute = ({ match, history, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
             const photoIx = match && match.params.photoIx;
 
