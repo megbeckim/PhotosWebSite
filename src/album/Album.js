@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { homeRoute, photoRoute } from '../routes';
-import { matchPath } from 'react-router'
 import { Thumbnail } from '../thumbnail/Thumbnail';
 
 const img = <img/>;
@@ -23,18 +22,15 @@ export class Album extends Component {
         this.albumRef.current.focus();
     }
 
-    componentDidUpdate(prevProps) {
-        if(this.props.match.isExact) {
-            this.albumRef.current.focus();
-        }
-    }
-
     componentDidUpdate() {
         if(!this.props.photoIx && this.state.mostRecentPhotoViewed) {
             // was the user was viewing backward
             const backward = this.state.secondMostRecentPhotoViewed
                 && Number(this.state.secondMostRecentPhotoViewed) > Number(this.state.mostRecentPhotoViewed);
             this.visiblePhotoRef.current.scrollIntoView(backward);
+        }
+        if(this.props.focus) {
+            this.albumRef.current.focus();
         }
     }
 
