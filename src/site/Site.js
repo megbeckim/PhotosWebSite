@@ -23,18 +23,18 @@ export class Site extends Component {
     render() {
         if (!this.state.model) return null;
 
-        const AlbumRoute = ({ match, history, ...props}) => {
+        const AlbumRouteChildren = ({ match, history, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
             const photoIx = match && match.params.photoIx;
 
             return (<TransitionGroup>
                     { album && <CSSTransition classNames='container' timeout={ animationTimeout }>
-                        <Album album={ album } photoIx={ photoIx }/>
+                        <Album album={ album } history={ history } photoIx={ photoIx } focus={ photoIx === undefined }/>
                     </CSSTransition> }
                 </TransitionGroup>);
         };
 
-        const PhotoRoute = ({ match, history, ...props}) => {
+        const PhotoRouteChildren = ({ match, history, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
 
             return (<TransitionGroup>
@@ -44,7 +44,7 @@ export class Site extends Component {
                 </TransitionGroup>);
         };
 
-        const MapRoute = ({ match, ...props}) => {
+        const MapRouteChildren = ({ match, ...props}) => {
             return (<TransitionGroup>
                     { match && <CSSTransition classNames='container' timeout={ animationTimeout }>
                         <Map/>
@@ -55,9 +55,9 @@ export class Site extends Component {
         return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
                     <AlbumCatalog model={ this.state.model }/>
-                    <Route path={ albumRoute(':title') + '/:dummy?/:photoIx?' } children={ AlbumRoute }/>
-                    <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRoute }/>
-                    <Route path={ mapRoute() } children={ MapRoute }/>
+                    <Route path={ albumRoute(':title') + '/:dummy?/:photoIx?' } children={ AlbumRouteChildren }/>
+                    <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRouteChildren }/>
+                    <Route path={ mapRoute() } children={ MapRouteChildren }/>
                 </div>
             </HashRouter>);
     }
