@@ -44,10 +44,10 @@ export class Site extends Component {
                 </TransitionGroup>);
         };
 
-        const MapRouteChildren = ({ match, ...props}) => {
+        const MapRouteChildren = ({ match, history, ...props}) => {
             return (<TransitionGroup>
                     { match && <CSSTransition classNames='container' timeout={ animationTimeout }>
-                        <Map/>
+                        <Map history={ history }/>
                     </CSSTransition> }
                 </TransitionGroup>);
         };

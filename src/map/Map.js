@@ -10,15 +10,23 @@ const wantToVisitColour = '#dd0';
 const notVisitedColour = '#888';
 const missingColour = '#f00';
 
+const ESCAPE_KEY_CODE = 27;
+
 export class Map extends Component {
     constructor(props) {
         super(props);
+        this.mapRef = React.createRef();
+
         this.state = { mapRendered: false };
 
         fetch('https://script.google.com/macros/s/AKfycby0xnh7hak2y71I2Ee4FK_Q5Ket9ZEkO82X3zSTHzzAQQsN02Y/exec')
             .then(response => response.json())
             .then(data => this.setState({ data }));
 
+    }
+
+    componentDidMount() {
+        this.mapRef.current.focus();
     }
 
     render() {
@@ -41,7 +49,9 @@ export class Map extends Component {
         ];
 
         return (
-            <div className='map-container'>
+            <div className='map-container'
+                    ref={ this.mapRef } tabIndex='0'
+                    onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.props.history.push(homeRoute()); } }>
                 <Link to={ homeRoute() }><div className='home'><img className='fas fa-home'/></div></Link>
                 { this.state.data &&
                     <div className={ classNames('map', { hidden: !this.state.mapRendered }) }>
