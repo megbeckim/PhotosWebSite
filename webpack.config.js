@@ -43,6 +43,7 @@ module.exports = {
                 secure: false,
                 bypass: function(req, res, proxyOptions) {
                     var bypass = req.path !== '/model.json'
+                        && req.path !== '/mapData.json'
                         && !req.path.startsWith('/albums')
                         && !req.path.startsWith('/thumb.php5');
                     if (bypass) {

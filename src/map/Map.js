@@ -18,11 +18,6 @@ export class Map extends Component {
         this.mapRef = React.createRef();
 
         this.state = { mapRendered: false };
-
-        fetch('https://script.google.com/macros/s/AKfycby0xnh7hak2y71I2Ee4FK_Q5Ket9ZEkO82X3zSTHzzAQQsN02Y/exec')
-            .then(response => response.json())
-            .then(data => this.setState({ data }));
-
     }
 
     componentDidMount() {
@@ -48,16 +43,21 @@ export class Map extends Component {
              }
         ];
 
+        const data = [
+            ['Country', 'Visited', {type: 'string', role: 'tooltip'}],
+            ...this.props.data
+        ];
+
         return (
             <div className='map-container'
                     ref={ this.mapRef } tabIndex='0'
                     onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.props.history.push(homeRoute()); } }>
                 <Link to={ homeRoute() }><div className='home'><img className='fas fa-home'/></div></Link>
-                { this.state.data &&
-                    <div className={ classNames('map', { hidden: !this.state.mapRendered }) }>
+                { this.props.data &&
+                    <div key='map' className={ classNames('map', { hidden: !this.state.mapRendered }) }>
                         <Chart
                             chartType="GeoChart"
-                            data={ this.state.data }
+                            data={ data }
                             options={ options }
                             width="100%"
                             height="100%"

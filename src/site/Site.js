@@ -18,6 +18,10 @@ export class Site extends Component {
         fetch('model.json')
             .then(response => response.json())
             .then(model => this.setState({ model }));
+
+        fetch('mapData.json')
+            .then(response => response.json())
+            .then(mapData => this.setState({ mapData }));
     }
 
     render() {
@@ -47,7 +51,7 @@ export class Site extends Component {
         const MapRouteChildren = ({ match, history, ...props}) => {
             return (<TransitionGroup>
                     { match && <CSSTransition classNames='container' timeout={ animationTimeout }>
-                        <Map history={ history }/>
+                        <Map history={ history } data={ this.state.mapData } />
                     </CSSTransition> }
                 </TransitionGroup>);
         };
