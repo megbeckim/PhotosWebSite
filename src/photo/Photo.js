@@ -15,7 +15,7 @@ export class Photo extends Component {
 
     previous() {
         if (this.props.photoIx !== 0) {
-            this.props.history.push(photoRoute(this.props.album.title, this.props.photoIx - 1));
+            this.props.history.replace(photoRoute(this.props.album.title, this.props.photoIx - 1));
             this.showControls();
         }
     }
@@ -23,7 +23,7 @@ export class Photo extends Component {
     next() {
         const numberOfPictures = this.props.album.chapters.reduce((acc, chapter) => acc + chapter.pictures.length, 0);
         if (this.props.photoIx !== numberOfPictures-1) {
-            this.props.history.push(photoRoute(this.props.album.title, this.props.photoIx + 1));
+            this.props.history.replace(photoRoute(this.props.album.title, this.props.photoIx + 1));
             this.showControls();
         }
     }

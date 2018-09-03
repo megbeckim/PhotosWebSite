@@ -20,7 +20,7 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Backlog*
 
-* change history, rather than add to it, when flipping through album, so mobile "back" button takes you to the album, not through the history of photos viewed
+* focus on album catalog, so <space> and <arrows> work when arriving and returning to it
 * consider using Highmaps (from Highcharts)
 * fix 'dummy' in Iceland
 * remove 'albums' from spreadsheet, and then instead of having to remove it from thumb.php5 param, add it to full-sized photo src
