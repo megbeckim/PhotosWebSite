@@ -17,6 +17,10 @@ export class Album extends Component {
         this.state = {};
     }
 
+    close() {
+        this.props.history.goBack();
+    }
+
     componentDidMount() {
         this.setState( { albumRefCurrent: this.albumRef.current } );
         this.albumRef.current.focus();
@@ -47,12 +51,12 @@ export class Album extends Component {
         return (
             <div className='album-container'>
                 <div className='album' ref={this.albumRef}
-                        onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.props.history.push(homeRoute()); } }
+                        onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
                         tabIndex='0'>
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>
-                            <Link to={ homeRoute() }><div className='home'><img className='fas fa-home'/></div></Link>
+                            <div className='home' onClick={ this.close.bind(this) } ><img className='fas fa-home'/></div>
                         </div>
                     </Headroom>
                     <div className='album-wrapper'>

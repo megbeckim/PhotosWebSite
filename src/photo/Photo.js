@@ -29,7 +29,7 @@ export class Photo extends Component {
     }
 
     close() {
-        this.props.history.push(albumRoute(this.props.album.title));
+        this.props.history.goBack();
     }
 
     showControls() {
