@@ -1,9 +1,9 @@
 function homeRoute() {
-    return '';
+    return '/';
 }
 
 function albumRoute(albumTitle) {
-    return `${ homeRoute() }/album/${ albumTitle }`;
+    return `${ homeRoute() }album/${ albumTitle }`;
 }
 
 function photoRoute(albumTitle, photoIx) {
@@ -11,7 +11,7 @@ function photoRoute(albumTitle, photoIx) {
 }
 
 function mapRoute() {
-    return `${ homeRoute() }/map`;
+    return `${ homeRoute() }map`;
 }
 
 export { homeRoute, albumRoute, photoRoute, mapRoute };
