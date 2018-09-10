@@ -9,6 +9,17 @@ const video = <video/>;
 
 const ESCAPE_KEY_CODE = 27;
 
+function isElementEntirelyVisible (el) {
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 export class Album extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +38,9 @@ export class Album extends Component {
     }
 
     componentDidUpdate() {
-        if(!this.props.photoIx && this.state.mostRecentPhotoViewed) {
+        if(!this.props.photoIx
+                && this.state.mostRecentPhotoViewed
+                && !isElementEntirelyVisible(this.visiblePhotoRef.current)) {
             // was the user was viewing backward
             const backward = this.state.secondMostRecentPhotoViewed
                 && Number(this.state.secondMostRecentPhotoViewed) > Number(this.state.mostRecentPhotoViewed);
