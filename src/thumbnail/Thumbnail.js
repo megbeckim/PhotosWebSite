@@ -14,11 +14,11 @@ export class Thumbnail extends Component {
     }
 
     render() {
-        const { component, src, ...passThroughProps } = this.props;
+        const { component, album, photo, ...passThroughProps } = this.props;
 
         const dynamicProps = { ref: this.thumbnailRef };
         if (this.state.width) {
-            dynamicProps.src = this.props.src(this.state.width);
+            dynamicProps.src = `thumb.php5?album=${ encodeURIComponent(album) }&fileName=${ encodeURIComponent(photo) }&width=${this.state.width}`;
         }
 
         return React.cloneElement(component, { ...passThroughProps, ...dynamicProps } );

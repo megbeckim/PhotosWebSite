@@ -27,6 +27,10 @@ export class Site extends Component {
     render() {
         if (!this.state.model) return null;
 
+        const AlbumCatalogRouteChildren = ({ match }) => {
+            return <AlbumCatalog model={ this.state.model } focus={ match.isExact }/>;
+        };
+
         const AlbumRouteChildren = ({ match, history, ...props}) => {
             const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
             const photoIx = match && match.params.photoIx;
@@ -58,7 +62,7 @@ export class Site extends Component {
 
         return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
-                    <AlbumCatalog model={ this.state.model }/>
+                    <Route path= { homeRoute() } children={ AlbumCatalogRouteChildren }/>
                     <Route path={ albumRoute(':title') + '/:dummy?/:photoIx?' } children={ AlbumRouteChildren }/>
                     <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRouteChildren }/>
                     <Route path={ mapRoute() } children={ MapRouteChildren }/>

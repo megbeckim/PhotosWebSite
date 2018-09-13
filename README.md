@@ -32,7 +32,6 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *UX improvements*
 
-* see how it looks with always square thumbnails (tricky on last line!)
 * style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean
 * full-screen from places other than home page?
 * album icon is ambiguous: perhaps a consistent back-button would be better
@@ -40,6 +39,7 @@ Provide the password for the FTP account, which is the usual password since the 
 * don't show main photo loading
 * don't show photos loading on album catalog
 * hiding prev/next on touch devices (e.g., phones)
+* see how it looks with always square thumbnails (tricky on last line!)
 
 
 *Icebox*

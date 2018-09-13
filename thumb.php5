@@ -7,7 +7,7 @@
 
     $thumbnailImage = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
 
-    $fullOriginalImagePath = 'albums/'.$album.'/'.$fileName;
+    $fullOriginalImagePath = realpath('albums/'.$album.'/'.$fileName);
 
     $lastModifiedTime = filemtime($fullOriginalImagePath);
     $eTag = md5($album.$fileName.$thumbnailWidth);

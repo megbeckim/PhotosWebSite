@@ -5,7 +5,6 @@ import { homeRoute, photoRoute } from '../routes';
 import { Thumbnail } from '../thumbnail/Thumbnail';
 
 const img = <img/>;
-const video = <video/>;
 
 const ESCAPE_KEY_CODE = 27;
 
@@ -85,8 +84,8 @@ export class Album extends Component {
                                                <Link to={ photoRoute(this.props.album.title, thisIndex) }>
                                                    {
                                                        picture.fileName.endsWith('.mp4')
-                                                           ? <Thumbnail component={ video } className='photo' controls={ false } src={ () => `${this.props.album.folder}/${picture.fileName}` } />
-                                                           : <Thumbnail component={ img } className='photo' src={ width => `thumb.php5?album=${folder}&fileName=${picture.fileName}&width=${width}` } />
+                                                           ? <video className='photo' controls={ false } src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                                           : <Thumbnail component={ img } className='photo' album={ folder } photo={ picture.fileName } />
                                                    }
                                                    { photoIx===0 && <div key={chapterIx} className='chapter-title'>{chapter.title}</div> }
                                                </Link>

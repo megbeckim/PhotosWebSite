@@ -35,6 +35,13 @@ export class AlbumCatalog extends Component {
         );
     }
 
+    componentDidUpdate() {
+        if(this.props.focus) {
+            console.log('focusing album catalog');
+            this.albumCatalogRef.current.focus();
+        }
+    }
+
     toggleFullScreen() {
         const doc = window.document;
         const docEl = doc.documentElement;
@@ -69,7 +76,7 @@ export class AlbumCatalog extends Component {
 
         return (
             <div className='album-catalog-container'>
-                <div className='album-catalog' ref={this.albumCatalogRef}>
+                <div className='album-catalog' ref={this.albumCatalogRef} tabIndex='-1'>
                     <Headroom disable={ !this.state.albumCatalogRefCurrent }
                             parent={ () => this.state.albumCatalogRefCurrent }>
                         <div className='header'>
@@ -91,15 +98,16 @@ export class AlbumCatalog extends Component {
                             {
                                 years.map( (year, index) => {
                                     return groupedByYear[year].map((album, ix) => {
-                                        const [, , title] = album.title.match(albumTitlePattern);
-                                        const folder = album.folder.substring('albums/'.length);
+                                        const [, , titleWithoutYear] = album.title.match(albumTitlePattern);
+                                        const { folder, coverImage } = album;
+                                        const abbreviatedFolder = folder.substring('albums/'.length);
 
                                         return <div key={`${year}-${ix}`} className='year-and-album'>
                                             { ix == 0 && <div key={ year } className='year'><div>{ year }</div></div> }
                                             <div key={ix} className='album'>
                                                 <Link to={ albumRoute(album.title) }>
-                                                    <Thumbnail component={ img } src={ width => `thumb.php5?album=${folder}&fileName=${album.coverImage}&width=${width}` } />
-                                                    <div className='title'>{ title }</div>
+                                                    <Thumbnail component={ img } album={ abbreviatedFolder } photo={ coverImage } />
+                                                    <div className='title'>{ titleWithoutYear }</div>
                                                 </Link>
                                             </div>
                                         </div>;
