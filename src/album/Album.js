@@ -62,9 +62,9 @@ export class Album extends Component {
         var index = 0;
         return (
             <div className='album-container'>
-                <div className='album' ref={this.albumRef}
+                <div className='album' ref={this.albumRef} tabIndex="-1"
                         onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
-                        tabIndex='0'>
+                        >
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
                         <div className='header'>
                             <div>{this.props.album.title}</div>

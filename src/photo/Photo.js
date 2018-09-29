@@ -65,7 +65,7 @@ export class Photo extends Component {
                     onClick={ this.showControls.bind(this) }
                     onMouseMove={ this.showControls.bind(this) }
                     onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
-                    tabIndex='0'>
+                    >
                 <Swipeable onSwipedLeft={ this.next.bind(this) } onSwipedRight={ this.previous.bind(this) } className='photo-container'>
                     <Carousel activeIndex={ this.props.photoIx }
                             interval={ false }

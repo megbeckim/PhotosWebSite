@@ -38,6 +38,7 @@ export class AlbumCatalog extends Component {
     componentDidUpdate() {
         if(this.props.focus) {
             console.log('focusing album catalog');
+            console.log(document.querySelectorAll("*[tabIndex]"));
             this.albumCatalogRef.current.focus();
         }
     }
@@ -76,7 +77,7 @@ export class AlbumCatalog extends Component {
 
         return (
             <div className='album-catalog-container'>
-                <div className='album-catalog' ref={this.albumCatalogRef} tabIndex='-1'>
+                <div className='album-catalog' ref={this.albumCatalogRef} tabIndex="-1">
                     <Headroom disable={ !this.state.albumCatalogRefCurrent }
                             parent={ () => this.state.albumCatalogRefCurrent }>
                         <div className='header'>

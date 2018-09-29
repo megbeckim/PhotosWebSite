@@ -50,7 +50,7 @@ export class Map extends Component {
 
         return (
             <div className='map-container'
-                    ref={ this.mapRef } tabIndex='0'
+                    ref={ this.mapRef } tabIndex='-1'
                     onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.props.history.push(homeRoute()); } }>
                 <Link to={ homeRoute() }><div className='home'><img className='fas fa-home'/></div></Link>
                 { this.props.data &&
