@@ -37,8 +37,6 @@ export class AlbumCatalog extends Component {
 
     componentDidUpdate() {
         if(this.props.focus) {
-            console.log('focusing album catalog');
-            console.log(document.querySelectorAll("*[tabIndex]"));
             this.albumCatalogRef.current.focus();
         }
     }
