@@ -34,7 +34,7 @@
     }
 
     // Resize
-    imagecopyresized($thumbnailImage, $originalImage, 0, 0, $originalCropLeft, $originalCropTop, $thumbnailWidth, $thumbnailHeight, $originalCropWidth, $originalCropHeight);
+    imagecopyresampled($thumbnailImage, $originalImage, 0, 0, $originalCropLeft, $originalCropTop, $thumbnailWidth, $thumbnailHeight, $originalCropWidth, $originalCropHeight);
 
     // Content type
     header('Content-type: image/jpeg');
