@@ -5,10 +5,10 @@ import { Chart } from 'react-google-charts';
 import classNames from 'classnames';
 
 const seaColour = '#000';
-const visitedColour = '#8f8';
-const wantToVisitColour = '#dd0';
-const notVisitedColour = '#888';
-const missingColour = '#f00';
+const visitedColour = '#6767e6';
+const notVisitedColour = '#fff';
+const wantToVisitColour = notVisitedColour;
+const missingColour = '#fee';
 
 const ESCAPE_KEY_CODE = 27;
 

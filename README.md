@@ -20,13 +20,12 @@ Provide the password for the FTP account, which is the usual password since the 
 
 *Backlog*
 
-* focus on album catalog, so <space> and <arrows> work when arriving and returning to it
+* make thumbnail images better quality
+* update document title when navigating
+* fix portrait/fullscreen on mobile not to have too big a font!
 * consider using Highmaps (from Highcharts)
-* fix 'dummy' in Iceland
 * remove 'albums' from spreadsheet, and then instead of having to remove it from thumb.php5 param, add it to full-sized photo src
 * convert videos
-* fix portrait/fullscreen on mobile not to have too big a font!
-* update document title when navigating
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the top picture is never 100% clear
 * better accessibility for phones (e.g., controls at bottom/center? swipe for next photo?)
 
