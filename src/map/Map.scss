@@ -83,6 +83,10 @@ ul.google-visualization-tooltip-item-list {
     margin: 0;
 
     li.google-visualization-tooltip-item {
+        span {
+            @include outlineText;
+        }
+
         margin: 0 !important;
         padding: 0 1em !important;
         line-height: 2em;
