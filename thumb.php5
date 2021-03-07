@@ -16,6 +16,23 @@
     header("ETag: \"{$eTag}\"");
 
     $originalImage = imagecreatefromjpeg($fullOriginalImagePath);
+
+    // get the exif data from the file to see if it needs to be rotated first
+    $exif = exif_read_data($fullOriginalImagePath);
+    if(!empty($exif['Orientation'])) {
+        switch($exif['Orientation']) {
+            case 8:
+                $originalImage = imagerotate($originalImage,90,0);
+                break;
+            case 3:
+                $originalImage = imagerotate($originalImage,180,0);
+                break;
+            case 6:
+                $originalImage = imagerotate($originalImage,-90,0);
+                break;
+        }
+    }
+
     $originalWidth = imagesx($originalImage);
     $originalHeight = imagesy($originalImage);
 

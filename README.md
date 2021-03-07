@@ -18,9 +18,18 @@ Type the following commands into a terminal:
 
 Provide the password for the FTP account, which is the usual password since the UK.
 
+*Upload Photos*
+
+Firstly, resize them to "fit within" 1,280 x 1,024. This is easily done by opening all of the files in
+the MacOS Preview app, selecting all of them, and then using the "Tool" "Resize" menu option. Since this lowers the
+resolution of most photos, ONLY DO THIS ON COPIES OF THE PHOTOS. Then close Preview.
+
+Next, upload the resized files. Instructions are in the Google Doc with the spreadsheet data in it.
+
 *Backlog*
 
-* make thumbnail images better quality
+* download diff quality images based on screen size (mobile vs. desktop) or bandwidth (do a probe?)
+* make thumbnail images better quality (what's wrong with them again???)
 * update document title when navigating
 * fix portrait/fullscreen on mobile not to have too big a font!
 * consider using Highmaps (from Highcharts)
@@ -39,7 +48,6 @@ Provide the password for the FTP account, which is the usual password since the 
 * don't show photos loading on album catalog
 * hiding prev/next on touch devices (e.g., phones)
 * see how it looks with always square thumbnails (tricky on last line!)
-
 
 *Icebox*
 
