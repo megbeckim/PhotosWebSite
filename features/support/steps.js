@@ -1,44 +1,10 @@
 const assert = require('assert').strict;
 
-const { Given, When, Then, AfterAll } = require('@cucumber/cucumber');
-const { Builder, By, until, TimeUnit, WebElement } = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
+const { Given, When, Then } = require('@cucumber/cucumber');
+const { until } = require('selenium-webdriver');
 
-const driver = new Builder()
-    .forBrowser('chrome')
-    .usingServer('http://localhost:4444/wd/hub')
-    .build();
-
-async function findMatchingSelfOrAncestor(element, predicate) {
-    while(false == await predicate(element)) {
-        element = await element.findElement(By.xpath('parent::*'));
-    }
-    return element;
-}
-
-async function checkVisible(element) {
-    const rect = await element.getRect();
-
-    element = await findMatchingSelfOrAncestor(
-            element,
-            async el => 'none' != await driver.executeScript('return getComputedStyle(arguments[0]).pointerEvents', el)
-        );
-
-    let elementAtPoint = await driver.executeScript(
-        `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.x, rect.y);
-
-    elementAtPoint = await findMatchingSelfOrAncestor(
-            elementAtPoint,
-            async el => await el.getTagName() == 'body' || await WebElement.equals(el, element)
-        );
-
-    const isVisible = await WebElement.equals(elementAtPoint, element);
-    return isVisible;
-}
-
-function xpathForText(text) {
-    return By.xpath(`//*[normalize-space(.) = '${ text }' and not(.//*[normalize-space(.) = '${ text }'])]`)
-}
+const { driver } = require('./browser');
+const { findMatchingSelfOrAncestor, checkVisible, xpathForText } = require('./utils');
 
 When('I browse to {string}', { timeout: 10000 }, url => driver.get(`http:${ url }`) );
 
@@ -56,5 +22,3 @@ Then('I see {string}',
 When('I click on {string}',
     text => driver.wait( until.elementLocated( xpathForText(text) ) )
                 .then( element => element.click() ));
-
-AfterAll( () => driver.quit() );
