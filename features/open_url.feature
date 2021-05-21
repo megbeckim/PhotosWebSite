@@ -17,3 +17,9 @@ Feature: Open URL
     When I browse to "faganphotos.com/#/album/2020%20Turks%20&%20Caicos/photo/0"
     Then the title is "Fagan Photos"
     And I see "The resort"
+
+    @ignore
+  Scenario: Load map
+    When I browse to "faganphotos.com/#/map"
+    Then the title is "Fagan Photos"
+    And I see "The resort"

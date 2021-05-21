@@ -4,7 +4,6 @@ const { AfterAll } = require('@cucumber/cucumber');
 
 const driver = new Builder()
     .forBrowser('chrome')
-    .usingServer('http://localhost:4444/wd/hub')
     .build();
 
 AfterAll( () => driver.quit() );

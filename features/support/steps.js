@@ -1,7 +1,7 @@
 const assert = require('assert').strict;
 
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { until } = require('selenium-webdriver');
+const { until, Key } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
 const { findMatchingSelfOrAncestor, checkVisible, xpathForText } = require('./utils');
@@ -22,3 +22,8 @@ Then('I see {string}',
 When('I click on {string}',
     text => driver.wait( until.elementLocated( xpathForText(text) ) )
                 .then( element => element.click() ));
+
+When('I press escape',
+    () => driver.actions()
+             .sendKeys(Key.ESCAPE)
+             .perform());
