@@ -19,7 +19,7 @@ Feature: Basic navigation
 
   Scenario: Navigate from home to map
     Given I browse to "faganphotos.com"
-    When I click on the map icon
+    When I click on the globe icon
     And I wait 1 second
     Then the title is "Fagan Photos"
     And I see "Visited"

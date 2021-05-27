@@ -38,7 +38,7 @@ Feature: Keyboard
 
   Scenario: Escape from map to home
     Given I browse to "faganphotos.com"
-    And I click on the map icon
+    And I click on the globe icon
     And I wait 1 second
     When I press escape
     And I wait 1 second

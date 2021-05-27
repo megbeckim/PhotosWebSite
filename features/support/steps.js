@@ -7,7 +7,6 @@ const { driver } = require('./browser');
 const { findMatchingSelfOrAncestor, checkVisible, xpathForText } = require('./utils');
 
 When('I browse to {string}', { timeout: 10000 }, async url => {
-    console.log(await driver.getCurrentUrl());
         // without this next line, one of the tests fails
         await driver.get("data:,");
         return driver.get(`http:${ url }`);
@@ -33,6 +32,6 @@ When('I press escape',
              .sendKeys(Key.ESCAPE)
              .perform());
 
-When('I click on the map icon',
-    () => driver.wait( until.elementLocated( By.xpath('//*[local-name() = "svg" and @data-icon="globe"]') ) )
+When('I click on the {word} icon',
+    iconName => driver.wait( until.elementLocated( By.xpath(`//*[local-name() = "svg" and @data-icon="${ iconName }"]`) ) )
                           .then( element => element.click() ) );
