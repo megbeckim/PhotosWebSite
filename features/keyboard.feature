@@ -35,3 +35,13 @@ Feature: Keyboard
     Then the title is "Fagan Photos"
     And I see "2020"
     And I see "Turks & Caicos"
+
+  Scenario: Escape from map to home
+    Given I browse to "faganphotos.com"
+    And I click on the map icon
+    And I wait 1 second
+    When I press escape
+    And I wait 1 second
+    Then the title is "Fagan Photos"
+    And I see "2020"
+    And I see "Turks & Caicos"

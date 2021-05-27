@@ -17,7 +17,7 @@ async function checkVisible(element) {
         );
 
     let elementAtPoint = await driver.executeScript(
-        `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.x, rect.y);
+        `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.x + rect.width/2, rect.y + rect.height/2);
 
     elementAtPoint = await findMatchingSelfOrAncestor(
             elementAtPoint,

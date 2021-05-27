@@ -16,3 +16,11 @@ Feature: Basic navigation
     And I wait 1 second
     Then the title is "Fagan Photos"
     And I see "The resort"
+
+  Scenario: Navigate from home to map
+    Given I browse to "faganphotos.com"
+    When I click on the map icon
+    And I wait 1 second
+    Then the title is "Fagan Photos"
+    And I see "Visited"
+    And I see "To visit"

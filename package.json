@@ -46,6 +46,7 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore'",
+    "testwip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip'",
     "e2e-setup": "selenium-standalone install"
   }
 }
