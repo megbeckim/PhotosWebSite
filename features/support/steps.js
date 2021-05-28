@@ -4,7 +4,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { until, Key, By } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
-const { findMatchingSelfOrAncestor, checkVisible, xpathForText } = require('./utils');
+const { findMatchingSelfOrAncestor, checkVisible, xpathForText, scroll } = require('./utils');
 
 When('I browse to {string}', { timeout: 10000 }, async url => {
         // without this next line, one of the tests fails
@@ -18,10 +18,10 @@ Then('the title is {string}',
     expectedTitle => driver.getTitle()
                 .then( title => assert.equal(title, expectedTitle) ) );
 
-Then('I see {string}',
-    text => driver.wait( until.elementLocated( xpathForText(text) ) )
+Then('I {}see {string}',
+    (negator, text) => driver.wait( until.elementLocated( xpathForText(text) ) )
                 .then( element => checkVisible(element) )
-                .then( visible => assert( visible, `The string '${ text }' was not visible` ) ));
+                .then( visible => assert.equal( visible, negator === undefined, `The string '${ text }' was${ visible ? '' : ' not' } visible` ) ));
 
 When('I click on {string}',
     text => driver.wait( until.elementLocated( xpathForText(text) ) )
@@ -35,3 +35,10 @@ When('I press escape',
 When('I click on the {word} icon',
     iconName => driver.wait( until.elementLocated( By.xpath(`//*[local-name() = "svg" and @data-icon="${ iconName }"]`) ) )
                           .then( element => element.click() ) );
+
+const scrollDirections = {
+    down: 1,
+    up: -1
+}
+When('I scroll {word} {int} pixels',
+    (direction, distance) => scroll(direction, distance) );

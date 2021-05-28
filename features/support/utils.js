@@ -11,20 +11,26 @@ async function findMatchingSelfOrAncestor(element, predicate) {
 async function checkVisible(element) {
     const rect = await element.getRect();
 
-    element = await findMatchingSelfOrAncestor(
+    const clickableElement = await findMatchingSelfOrAncestor(
             element,
             async el => 'none' != await driver.executeScript('return getComputedStyle(arguments[0]).pointerEvents', el)
         );
 
-    let elementAtPoint = await driver.executeScript(
+    const elementAtPoint = await driver.executeScript(
         `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.x + rect.width/2, rect.y + rect.height/2);
 
-    elementAtPoint = await findMatchingSelfOrAncestor(
+    // if there is no element at that point in the window (e.g., it is outside of the view pane) ...
+    if (elementAtPoint === null) {
+        // ... then that counts as invisible
+        return false;
+    }
+
+    const clickableElementAtPoint = await findMatchingSelfOrAncestor(
             elementAtPoint,
-            async el => await el.getTagName() == 'body' || await WebElement.equals(el, element)
+            async el => await el.getTagName() == 'body' || await WebElement.equals(el, clickableElement)
         );
 
-    const isVisible = await WebElement.equals(elementAtPoint, element);
+    const isVisible = await WebElement.equals(clickableElementAtPoint, clickableElement);
     return isVisible;
 }
 
@@ -32,4 +38,23 @@ function xpathForText(text) {
     return By.xpath(`//*[normalize-space(.) = '${ text }' and not(.//*[normalize-space(.) = '${ text }'])]`)
 }
 
-module.exports = { xpathForText, checkVisible, findMatchingSelfOrAncestor };
+const scrollDirections = {
+    down: 1,
+    up: -1
+}
+
+async function scroll(direction, distance) {
+    let rect = await driver.manage().window().getRect();
+
+    let elementCoveringMiddlePoint = await driver.executeScript(
+        `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.width/2, rect.height/2);
+
+    let scrollableElementCoveringMiddlePoint = await findMatchingSelfOrAncestor(
+                elementCoveringMiddlePoint,
+                async el => 'scroll' === await driver.executeScript('return getComputedStyle(arguments[0]).overflow', el)
+            );
+
+    return driver.executeScript(`arguments[0].scrollBy(0, ${ distance * scrollDirections[direction] });`, scrollableElementCoveringMiddlePoint);
+}
+
+module.exports = { xpathForText, checkVisible, findMatchingSelfOrAncestor, scroll };
