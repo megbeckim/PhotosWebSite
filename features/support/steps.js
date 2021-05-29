@@ -4,7 +4,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { until, Key, By } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
-const { findMatchingSelfOrAncestor, checkVisible, xpathForText, scroll } = require('./utils');
+const { findMatchingSelfOrAncestor, checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
 
 When('I browse to {string}', { timeout: 10000 }, async url => {
         // without this next line, one of the tests fails
@@ -32,8 +32,13 @@ When('I press escape',
              .sendKeys(Key.ESCAPE)
              .perform());
 
+Then('I {}see the {word} icon',
+    (negator, iconName) => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
+                .then( element => checkVisible(element) )
+                .then( visible => assert.equal( visible, negator === undefined, `The '${ iconName }' icon was${ visible ? '' : ' not' } visible` ) ));
+
 When('I click on the {word} icon',
-    iconName => driver.wait( until.elementLocated( By.xpath(`//*[local-name() = "svg" and @data-icon="${ iconName }"]`) ) )
+    iconName => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
                           .then( element => element.click() ) );
 
 const scrollDirections = {

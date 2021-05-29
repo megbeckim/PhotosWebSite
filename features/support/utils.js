@@ -38,6 +38,10 @@ function xpathForText(text) {
     return By.xpath(`//*[normalize-space(.) = '${ text }' and not(.//*[normalize-space(.) = '${ text }'])]`)
 }
 
+function xpathForIcon(iconName) {
+    return By.xpath(`//*[local-name() = "svg" and @data-icon="${ iconName }"]`);
+}
+
 const scrollDirections = {
     down: 1,
     up: -1
@@ -57,4 +61,4 @@ async function scroll(direction, distance) {
     return driver.executeScript(`arguments[0].scrollBy(0, ${ distance * scrollDirections[direction] });`, scrollableElementCoveringMiddlePoint);
 }
 
-module.exports = { xpathForText, checkVisible, findMatchingSelfOrAncestor, scroll };
+module.exports = { xpathForText, xpathForIcon, checkVisible, findMatchingSelfOrAncestor, scroll };
