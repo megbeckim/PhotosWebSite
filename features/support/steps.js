@@ -4,7 +4,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { until, Key, By } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
-const { findMatchingSelfOrAncestor, checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
+const { checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
 
 When('I browse to {string}', { timeout: 10000 }, async url => {
         // without this next line, one of the tests fails

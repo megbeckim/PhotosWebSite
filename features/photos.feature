@@ -6,32 +6,44 @@ Feature: Photos page
     And I click on "Grace Bay"
     And I wait 1 second
 
-  Scenario: Browse to photos
+  Scenario: See the title
     Then the title is "Fagan Photos"
-    And I see "The resort"
-    And I see the images icon
-    And I see the angle-right icon
-    And I don't see the angle-left icon
 
-  Scenario: click arrow right
+  Scenario: See the label
+    Then I see "The resort"
+
+  Scenario: See the album icon
+    Then I see the images icon
+
+  Scenario: See the next photo icon
+    Then I see the angle-right icon
+
+  Scenario: See the previous photo icon
+    When I click on the angle-right icon
+    And I wait 1 second
+    Then I see the angle-right icon
+
+  Scenario: Don't see the previous photo icon
+    Then I don't see the angle-left icon
+
+  Scenario: Click arrow right
     When I click on the angle-right icon
     And I wait 1 second
     Then I see "Multicoloured bougainvillea"
-    And I see the images icon
-    And I see the angle-right icon
-    And I see the angle-left icon
 
-  Scenario: click arrow left
+  Scenario: Click arrow left
     Given I click on the angle-right icon
     And I wait 1 second
     When I click on the angle-left icon
     And I wait 1 second
     And I see "The resort"
-    And I see the images icon
-    And I see the angle-right icon
-    And I don't see the angle-left icon
 
-  Scenario: decorations disappear
+  Scenario: Decorations disappear
+    When I wait 3 seconds
+    Then I don't see "The resort"
+    And I don't see the images icon
+    And I don't see the angle-right icon
+    And I don't see the angle-left icon
 
   Scenario: decorations reappear
 

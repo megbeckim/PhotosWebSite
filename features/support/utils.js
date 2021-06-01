@@ -1,37 +1,70 @@
 const { By, WebElement } = require('selenium-webdriver');
 const { driver } = require('./browser');
 
-async function findMatchingSelfOrAncestor(element, predicate) {
-    while(false == await predicate(element)) {
-        element = await element.findElement(By.xpath('parent::*'));
+async function isTransparent(element) {
+    return '0' === await driver.executeScript('return getComputedStyle(arguments[0]).opacity', element)
+}
+
+// TODO define in terms of above
+async function isNotTransparent(element) {
+    return '0' !== await driver.executeScript('return getComputedStyle(arguments[0]).opacity', element)
+}
+
+async function acceptsPointerEvents(element) {
+    return 'none' !== await driver.executeScript('return getComputedStyle(arguments[0]).pointerEvents', element)
+}
+
+async function findMatchingSelfOrAncestor(element, matchTest, abandonTest = el => false) {
+    if (element === null || 'html' === await element.getTagName()) {
+        return null;
     }
-    return element;
+
+    if (await abandonTest(element)) {
+        return null;
+    }
+
+    if (await matchTest(element)) {
+        return element;
+    }
+
+    const parentElement = await element.findElement(By.xpath('parent::*'));
+
+    return findMatchingSelfOrAncestor(parentElement, matchTest, abandonTest);
+}
+
+async function findFirstMatching(elements, matchTest) {
+    if (elements.length === 0) {
+        return null;
+    }
+
+    const [ firstElement, ...rest ] = elements;
+
+    if (await matchTest(firstElement)) {
+        return firstElement;
+    }
+
+    return findFirstMatching(rest, matchTest);
 }
 
 async function checkVisible(element) {
-    const rect = await element.getRect();
+    const screenBefore = await driver.takeScreenshot();
 
-    const clickableElement = await findMatchingSelfOrAncestor(
-            element,
-            async el => 'none' != await driver.executeScript('return getComputedStyle(arguments[0]).pointerEvents', el)
-        );
+    const oldStyle = await element.getAttribute('style');
 
-    const elementAtPoint = await driver.executeScript(
-        `return document.elementFromPoint(arguments[0], arguments[1]);`, rect.x + rect.width/2, rect.y + rect.height/2);
+    await driver.executeScript('arguments[0].style.visibility="hidden";', element);
 
-    // if there is no element at that point in the window (e.g., it is outside of the view pane) ...
-    if (elementAtPoint === null) {
-        // ... then that counts as invisible
-        return false;
+    const screenAfter = await driver.takeScreenshot();
+
+    await driver.executeScript(`arguments[0].style="${ oldStyle }";`, element);
+
+    const screenRecovered = await driver.takeScreenshot();
+
+    if (screenRecovered !== screenBefore) {
+        // must have run into an animation! try this again
+        return checkVisible(element);
     }
 
-    const clickableElementAtPoint = await findMatchingSelfOrAncestor(
-            elementAtPoint,
-            async el => await el.getTagName() == 'body' || await WebElement.equals(el, clickableElement)
-        );
-
-    const isVisible = await WebElement.equals(clickableElementAtPoint, clickableElement);
-    return isVisible;
+    return screenBefore !== screenAfter;
 }
 
 function xpathForText(text) {
@@ -61,4 +94,4 @@ async function scroll(direction, distance) {
     return driver.executeScript(`arguments[0].scrollBy(0, ${ distance * scrollDirections[direction] });`, scrollableElementCoveringMiddlePoint);
 }
 
-module.exports = { xpathForText, xpathForIcon, checkVisible, findMatchingSelfOrAncestor, scroll };
+module.exports = { xpathForText, xpathForIcon, checkVisible, scroll };
