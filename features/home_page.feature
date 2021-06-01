@@ -2,7 +2,6 @@ Feature: Home page
 
   Background:
     Given I browse to "faganphotos.com"
-    And I see "FaganPhotos.com"
 
   Scenario: Browse to home
     Then the title is "Fagan Photos"
@@ -25,7 +24,6 @@ Feature: Home page
   Scenario: Scroll back up quickly to see header
     Given I scroll down 400 pixels
     When I scroll up 6 pixels
-    And I wait 1 second
     Then I see "FaganPhotos.com"
     And I don't see "2020"
     And I don't see "Turks & Caicos"
@@ -33,29 +31,25 @@ Feature: Home page
   Scenario: Scroll up slowly to not see header
     Given I scroll down 400 pixels
     When I scroll up 5 pixels
-    And I wait 1 second
     Then I don't see "FaganPhotos.com"
     And I don't see "2020"
     And I don't see "Turks & Caicos"
 
-  Scenario: scroll to top
+  Scenario: Scroll to top
     Given I scroll down 400 pixels
     When I scroll up 400 pixels
-    And I wait 1 second
     Then I see "FaganPhotos.com"
     And I see "2020"
     And I see "Turks & Caicos"
 
   Scenario: Go from home to album
     When I click on "Turks & Caicos"
-    And I wait 1 second
     Then the title is "Fagan Photos"
     And I see "2020 Turks & Caicos"
     And I see "Grace Bay"
 
   Scenario: Go from home to map
     When I click on the globe icon
-    And I wait 1 second
     Then the title is "Fagan Photos"
     And I see "Visited"
     And I see "To visit"

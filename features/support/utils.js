@@ -1,19 +1,6 @@
 const { By, WebElement } = require('selenium-webdriver');
 const { driver } = require('./browser');
 
-async function isTransparent(element) {
-    return '0' === await driver.executeScript('return getComputedStyle(arguments[0]).opacity', element)
-}
-
-// TODO define in terms of above
-async function isNotTransparent(element) {
-    return '0' !== await driver.executeScript('return getComputedStyle(arguments[0]).opacity', element)
-}
-
-async function acceptsPointerEvents(element) {
-    return 'none' !== await driver.executeScript('return getComputedStyle(arguments[0]).pointerEvents', element)
-}
-
 async function findMatchingSelfOrAncestor(element, matchTest, abandonTest = el => false) {
     if (element === null || 'html' === await element.getTagName()) {
         return null;

@@ -66,5 +66,17 @@ Feature: Photos page
   Scenario: navigate then click back to album
 
   Scenario: Escape back to album
+    When I press escape
+    Then the title is "Fagan Photos"
+    And I see "2020 Turks & Caicos"
+    And I see "Grace Bay"
 
-  Scenario: navigate then escape back to album
+  Scenario: Escape back all the way to home
+    When I press escape
+    And I wait 1 second
+    And I press escape
+    And I wait 1 second
+    Then the title is "Fagan Photos"
+    And I see "FaganPhotos.com"
+    And I see "2020"
+    And I see "Turks & Caicos"
