@@ -1,7 +1,7 @@
 const assert = require('assert').strict;
 
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { until, Key, By } = require('selenium-webdriver');
+const { until, Key, By, Origin } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
 const { checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
@@ -41,9 +41,11 @@ When('I click on the {word} icon',
     iconName => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
                           .then( element => element.click() ) );
 
-const scrollDirections = {
-    down: 1,
-    up: -1
-}
 When('I scroll {word} {int} pixels',
     (direction, distance) => scroll(direction, distance) );
+
+When('I move the mouse',
+    () => driver.actions().move({x: 10, y: 0, origin: Origin.POINTER}).perform() );
+
+When('I click the mouse',
+    () => driver.actions().press().release().perform() );

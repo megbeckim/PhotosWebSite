@@ -39,31 +39,92 @@ Feature: Photos page
     And I see "The resort"
 
   Scenario: Decorations disappear
-    When I wait 3 seconds
-    Then I don't see "The resort"
+    Given I click on the angle-right icon
+    When I wait 4 seconds
+    Then I don't see "Multicoloured bougainvillea"
     And I don't see the images icon
     And I don't see the angle-right icon
     And I don't see the angle-left icon
 
-  Scenario: decorations reappear
+  Scenario: Moving the mouse makes decorations reappear - part 1
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I move the mouse
+    Then I see "Multicoloured bougainvillea"
 
-  Scenario: decorations reappear
+  Scenario: Moving the mouse makes decorations reappear - part 2
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I move the mouse
+    Then I see the images icon
 
-  Scenario: arrow right
+  Scenario: Moving the mouse makes decorations reappear - part 3
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I move the mouse
+    Then I see the angle-left icon
 
-  Scenario: arrow right at end
+  Scenario: Moving the mouse makes decorations reappear - part 4
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I move the mouse
+    Then I see the angle-right icon
 
-  Scenario: arrow left
+  Scenario: Clicking makes decorations reappear - part 1
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I click the mouse
+    Then I see "Multicoloured bougainvillea"
 
-  Scenario: arrow left at start
+  Scenario: Clicking makes decorations reappear - part 2
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I click the mouse
+    Then I see the images icon
+
+  Scenario: Clicking makes decorations reappear - part 3
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I click the mouse
+    Then I see the angle-left icon
+
+  Scenario: Clicking makes decorations reappear - part 4
+    Given I click on the angle-right icon
+    And I wait 4 seconds
+    When I click the mouse
+    Then I see the angle-right icon
+
+  Scenario: arrow key right
+
+  Scenario: arrow key right at end
+
+  Scenario: arrow key left
+
+  Scenario: arrow key left at start
 
   Scenario: no right arrow at end
 
   Scenario: no left arrow at start
 
   Scenario: Click back to album
+      When I click on the images icon
+      Then I see "2020 Turks & Caicos"
+      And I see "Grace Bay"
 
-  Scenario: navigate then click back to album
+  Scenario: Navigate forward through many photos then click back to album to see it scrolled
+      When I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the angle-right icon
+      And I click on the images icon
+      Then I don't see "2020 Turks & Caicos"
+      And I don't see "Grace Bay"
+
+  Scenario: Navigate backward through many photos then click back to album to see it scrolled
 
   Scenario: Escape back to album
     When I press escape
