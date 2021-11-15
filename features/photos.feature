@@ -124,8 +124,6 @@ Feature: Photos page
       Then I don't see "2020 Turks & Caicos"
       And I don't see "Grace Bay"
 
-  Scenario: Navigate backward through many photos then click back to album to see it scrolled
-
   Scenario: Escape back to album
     When I press escape
     Then the title is "Fagan Photos"

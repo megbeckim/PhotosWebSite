@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
-import Swipeable from 'react-swipeable'
+import { Carousel } from 'react-bootstrap';
 import classNames from 'classnames';
 import { albumRoute, photoRoute } from '../routes';
 
@@ -13,18 +12,21 @@ export class Photo extends Component {
         this.ref = React.createRef();
     }
 
+    select(index) {
+        this.props.history.replace(photoRoute(this.props.album.title, index));
+        this.showControls();
+    }
+
     previous() {
         if (this.props.photoIx !== 0) {
-            this.props.history.replace(photoRoute(this.props.album.title, this.props.photoIx - 1));
-            this.showControls();
+            this.select(this.props.photoIx - 1);
         }
     }
 
     next() {
         const numberOfPictures = this.props.album.chapters.reduce((acc, chapter) => acc + chapter.pictures.length, 0);
         if (this.props.photoIx !== numberOfPictures-1) {
-            this.props.history.replace(photoRoute(this.props.album.title, this.props.photoIx + 1));
-            this.showControls();
+            this.select(this.props.photoIx + 1);
         }
     }
 
@@ -66,27 +68,28 @@ export class Photo extends Component {
                     onMouseMove={ this.showControls.bind(this) }
                     onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
                     >
-                <Swipeable onSwipedLeft={ this.next.bind(this) } onSwipedRight={ this.previous.bind(this) } className='photo-container'>
-                    <Carousel activeIndex={ this.props.photoIx }
-                            interval={ false }
-                            next={ this.next.bind(this) } previous={ this.previous.bind(this) }>
-                        {
-                            pictures.map( (picture, ix) =>
-                                <CarouselItem key={ ix }>
-                                    {
-                                        picture.fileName.endsWith('.mp4')
-                                            ? <video className='photo' controls={ true } src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                            : <img className='photo' src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                    }
-                                    <div className='caption' >{ picture.caption }</div>
-                                </CarouselItem>
-                            )
-                        }
-                    </Carousel>
-                    <div className='close' onClick={ this.close.bind(this) } ><img className='fas fa-images'/></div>
-                    <div className={ classNames('prev', { disabled: this.props.photoIx === 0 }) } onClick={ this.previous.bind(this) }><img className='fas fa-angle-left' /></div>
-                    <div className={ classNames('next', { disabled: this.props.photoIx === pictures.length-1 }) } onClick={ this.next.bind(this) }><img className='fas fa-angle-right' /></div>
-                </Swipeable>
+                <Carousel activeIndex={ this.props.photoIx }
+                        controls={ false }
+                        indicators={ false }
+                        wrap={ false }
+                        onSelect={ this.select.bind(this) }
+                        >
+                    {
+                        pictures.map( (picture, ix) =>
+                            <Carousel.Item key={ ix }>
+                                {
+                                    picture.fileName.endsWith('.mp4')
+                                        ? <video className='photo' controls={ true } src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                        : <img className='photo' src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                }
+                                <div className='caption' >{ picture.caption }</div>
+                            </Carousel.Item>
+                        )
+                    }
+                </Carousel>
+                <div className='close' onClick={ this.close.bind(this) } ><img className='fas fa-images'/></div>
+                <div className={ classNames('prev', { disabled: this.props.photoIx === 0 }) } onClick={ this.previous.bind(this) }><img className='fas fa-angle-left' /></div>
+                <div className={ classNames('next', { disabled: this.props.photoIx === pictures.length-1 }) } onClick={ this.next.bind(this) }><img className='fas fa-angle-right' /></div>
             </div>
           );
     }

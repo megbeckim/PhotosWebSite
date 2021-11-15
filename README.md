@@ -4,11 +4,15 @@
 
 To run, enter the following command in a terminal:
 
-    webpack-dev-server -d
+    webpack-dev-server
 
 Then browse to:
 
     http://localhost:9000/
+
+Then to test, in a second terminal:
+
+    npm test
 
 *Deploy*
 
@@ -28,6 +32,8 @@ Next, upload the resized files. Instructions are in the Google Doc with the spre
 
 *Backlog*
 
+* stop video when moving off that photo
+* fix that after clicking on the arrow icons, escape doesn't work
 * download diff quality images based on screen size (mobile vs. desktop) or bandwidth (do a probe?)
 * make thumbnail images better quality (what's wrong with them again???)
 * update document title when navigating
@@ -40,18 +46,18 @@ Next, upload the resized files. Instructions are in the Google Doc with the spre
 
 *UX improvements*
 
-* style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean
-* full-screen from places other than home page?
+* style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean, antartica
+* full-screen from places other than home page
 * album icon is ambiguous: perhaps a consistent back-button would be better
 * don't show photos loading on album
 * don't show main photo loading
 * don't show photos loading on album catalog
-* hiding prev/next on touch devices (e.g., phones)
+* hide and disable prev/next on touch devices (e.g., phones)
 * see how it looks with always square thumbnails (tricky on last line!)
 
 *Icebox*
 
-* send message to web master
+* send message to webmaster
 * show map of dive destinations
 * go to next/prev album from within album
 

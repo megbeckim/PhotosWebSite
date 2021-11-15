@@ -2,56 +2,48 @@ const webpack = require('webpack');
 
 var path = require('path');
 module.exports = {
-    context: __dirname + '/src',
-    entry: './main.js',
+    mode: 'development',
+    context: __dirname,
+    entry: './src/main.js',
     output: {
-        path: 'bin',
+        path: __dirname + '/bin',
         filename: 'bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.js$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel',
-                query: {
-                        presets: ['es2015']
+                loader: 'babel-loader',
+                options: {
+                        presets: ['@babel/react', '@babel/env']
                       }
             },
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass'],
+                use: ['style-loader', 'css-loader',
+                    {
+                        loader: "sass-loader",
+                        options: {
+                          sassOptions: {
+                            includePaths: [ path.relative(__dirname, 'src') ],
+                          },
+                        },
+                      }
+                ],
             }
         ]
     },
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false,
-        },
-        output: {
-            comments: false,
-        },
-        }),
-    ],
     devServer: {
         port: 9000,
-        proxy: {
-            '/**': {
+        proxy: [
+            {
+                context: ['/model.json', '/mapData.json', '/albums', '/thumb.php5'],
                 target: 'http://faganphotos.com:80',
                 changeOrigin: true,
-                secure: false,
-                bypass: function(req, res, proxyOptions) {
-                    var bypass = req.path !== '/model.json'
-                        && req.path !== '/mapData.json'
-                        && !req.path.startsWith('/albums')
-                        && !req.path.startsWith('/thumb.php5');
-                    if (bypass) {
-                        return req.path;
-                    }
-                    return bypass;
-                }
+                secure: false
             }
-        }
-    }
+        ]
+    },
+    devtool: 'source-map'
 };
