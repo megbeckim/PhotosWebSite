@@ -52,7 +52,7 @@ export class Photo extends Component {
 
     componentDidMount() {
         this.setTimer();
-        this.ref.current.focus();
+        this.ref.current.element.focus();
     }
 
     componentWillUnmount() {
@@ -63,15 +63,18 @@ export class Photo extends Component {
         const pictures = this.props.album.chapters.reduce((acc, chapter) => acc.concat(chapter.pictures), []);
         const picture = pictures[this.props.photoIx];
         return (
-            <div ref={this.ref} className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) }
+            <div className={ classNames('photo-container', { 'show-controls': this.state.controlsShown }) }
                     onClick={ this.showControls.bind(this) }
                     onMouseMove={ this.showControls.bind(this) }
                     onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
                     >
                 <Carousel activeIndex={ this.props.photoIx }
+                        ref={this.ref}
+                        tabIndex="-1"
                         controls={ false }
                         indicators={ false }
                         wrap={ false }
+                        interval={ null }
                         onSelect={ this.select.bind(this) }
                         >
                     {

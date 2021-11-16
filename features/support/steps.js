@@ -32,6 +32,16 @@ When('I press escape',
              .sendKeys(Key.ESCAPE)
              .perform());
 
+When('I press right arrow',
+    () => driver.actions()
+             .sendKeys(Key.ARROW_RIGHT)
+             .perform());
+
+When('I press left arrow',
+    () => driver.actions()
+             .sendKeys(Key.ARROW_LEFT)
+             .perform());
+
 Then('I {}see the {word} icon',
     (negator, iconName) => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
                 .then( element => checkVisible(element) )

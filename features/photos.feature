@@ -95,16 +95,58 @@ Feature: Photos page
     Then I see the angle-right icon
 
   Scenario: arrow key right
+    When I press right arrow
+    And I wait 1 second
+    Then I see "Multicoloured bougainvillea"
 
+  @ignore
+# not really sure what to assert here
   Scenario: arrow key right at end
+    Given I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    When I click on the angle-right icon
 
   Scenario: arrow key left
+    Given I press right arrow
+    When I press left arrow
+    And I wait 1 second
+    Then I see "The resort"
 
   Scenario: arrow key left at start
+    When I press left arrow
+    And I wait 1 second
+    Then I see "The resort"
 
   Scenario: no right arrow at end
+    When I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    Then I don't see the angle-right icon
 
   Scenario: no left arrow at start
+    Then I don't see the angle-left icon
 
   Scenario: Click back to album
       When I click on the images icon

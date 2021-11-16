@@ -2,6 +2,7 @@ Feature: Home page
 
   Background:
     Given I browse to "faganphotos.com"
+    And I wait 1 second
 
   Scenario: Browse to home
     Then the title is "Fagan Photos"
