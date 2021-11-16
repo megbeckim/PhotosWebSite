@@ -19,6 +19,7 @@ export class Photo extends Component {
         }
         this.props.history.replace(photoRoute(this.props.album.title, index));
         this.showControls();
+        this.ref.current.element.focus();
     }
 
     previous() {

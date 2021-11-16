@@ -1,10 +1,12 @@
 const assert = require('assert').strict;
 
-const { Given, When, Then } = require('@cucumber/cucumber');
+const { Given, When, Then, setDefaultTimeout } = require('@cucumber/cucumber');
 const { until, Key, By, Origin } = require('selenium-webdriver');
 
 const { driver } = require('./browser');
 const { checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
+
+setDefaultTimeout(10 * 1000);
 
 When('I browse to {string}', { timeout: 10000 }, async url => {
         // without this next line, one of the tests fails

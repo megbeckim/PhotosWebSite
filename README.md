@@ -32,8 +32,6 @@ Next, upload the resized files. Instructions are in the Google Doc with the spre
 
 *Backlog*
 
-* stop video when moving off that photo
-* fix that after clicking on the arrow icons, escape doesn't work
 * download diff quality images based on screen size (mobile vs. desktop) or bandwidth (do a probe?)
 * make thumbnail images better quality (what's wrong with them again???)
 * update document title when navigating

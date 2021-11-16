@@ -7,6 +7,7 @@ Feature: Photos page
 
 #  @wip
 # after clicking on the arrow icons, escape doesn't work!!!!
+# actually, it does, but the test doesn't!!!!
   @ignore
   Scenario: Navigate backward through many photos then click back to album to see it scrolled
     Given I scroll down 400 pixels
