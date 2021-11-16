@@ -10,9 +10,13 @@ export class Photo extends Component {
         super(props);
         this.state = { controlsShown: true };
         this.ref = React.createRef();
+        this.videoRef = React.createRef();
     }
 
     select(index) {
+        if (this.videoRef.current && this.videoRef.current.pause) {
+            this.videoRef.current.pause();
+        }
         this.props.history.replace(photoRoute(this.props.album.title, index));
         this.showControls();
     }
@@ -82,8 +86,11 @@ export class Photo extends Component {
                             <Carousel.Item key={ ix }>
                                 {
                                     picture.fileName.endsWith('.mp4')
-                                        ? <video className='photo' controls={ true } src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                        : <img className='photo' src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                        ? <video className='photo' controls={ true }
+                                            ref={ this.props.photoIx === ix ? this.videoRef : null }
+                                            src={ `${this.props.album.folder}/${picture.fileName}` } />
+                                        : <img className='photo'
+                                            src={ `${this.props.album.folder}/${picture.fileName}` } />
                                 }
                                 <div className='caption' >{ picture.caption }</div>
                             </Carousel.Item>
