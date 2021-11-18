@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@babel/cli": "7.16.0",
-    "@cucumber/cucumber": "^7.2.1",
+    "@cucumber/cucumber": "7.3.1",
     "chromedriver": "^95.0.0",
     "css-loader": "^0.28.11",
     "node-sass": "6.0.1",
@@ -39,8 +39,9 @@
     "webpack-dev-server": "4.4.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore'",
-    "test-wip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip'",
+    "test": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
+    "test-prod": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"faganphotos.com\"}'",
+    "test-wip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
     "e2e-setup": "selenium-standalone install"
   }
 }

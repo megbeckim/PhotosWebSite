@@ -8,10 +8,10 @@ const { checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
 
 setDefaultTimeout(10 * 1000);
 
-When('I browse to {string}', { timeout: 10000 }, async url => {
+When('I browse to {string}', async function(url) {
         // without this next line, one of the tests fails
         await driver.get("data:,");
-        return driver.get(`http:${ url }`);
+        return driver.get(`http:${ url.replace('faganphotos.com', this.parameters.baseUrl) }`);
     } );
 
 When('I wait {int} second(s)', seconds => new Promise( resolve => setTimeout(resolve, seconds * 1000) ) );

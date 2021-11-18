@@ -120,6 +120,7 @@ Feature: Photos page
 
   Scenario: arrow key left
     Given I press right arrow
+    And I see the angle-left icon
     When I press left arrow
     And I wait 1 second
     Then I see "The resort"
@@ -149,22 +150,22 @@ Feature: Photos page
     Then I don't see the angle-left icon
 
   Scenario: Click back to album
-      When I click on the images icon
-      Then I see "2020 Turks & Caicos"
-      And I see "Grace Bay"
+    When I click on the images icon
+    Then I see "2020 Turks & Caicos"
+    And I see "Grace Bay"
 
   Scenario: Navigate forward through many photos then click back to album to see it scrolled
-      When I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the angle-right icon
-      And I click on the images icon
-      Then I don't see "2020 Turks & Caicos"
-      And I don't see "Grace Bay"
+    When I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the angle-right icon
+    And I click on the images icon
+    Then I don't see "2020 Turks & Caicos"
+    And I don't see "Grace Bay"
 
   Scenario: Escape back to album
     When I press escape
