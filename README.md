@@ -8,7 +8,7 @@ To run, enter the following command in a terminal:
 
 Then browse to:
 
-    http://localhost:9000/
+    https://localhost:9000/
 
 Then to test, in a second terminal run the following command:
 
@@ -32,7 +32,7 @@ Firstly, resize them to "fit within" 1,280 x 1,024. This is easily done by openi
 the MacOS Preview app, selecting all of them, and then using the "Tool" "Resize" menu option. Since this lowers the
 resolution of most photos, ONLY DO THIS ON COPIES OF THE PHOTOS. Then close Preview.
 
-Next, upload the resized files. Instructions are in the Google Doc with the spreadsheet data in it.
+Next, upload the resized files. Further instructions are in the Google Doc that contains the album data.
 
 ## Backlog
 
@@ -42,19 +42,20 @@ Next, upload the resized files. Instructions are in the Google Doc with the spre
 * fix portrait/fullscreen on mobile not to have too big a font!
 * consider using Highmaps (from Highcharts)
 * remove 'albums' from spreadsheet, and then instead of having to remove it from thumb.php5 param, add it to full-sized photo src
-* convert videos
 * the drop shadow is _just_ visible when the headers scroll away, which means the top of the top picture is never 100% clear
-* better accessibility for phones (e.g., controls at bottom/center? swipe for next photo?)
+* better accessibility for phones (e.g., controls at bottom?)
 
 ## UX improvements
 
-* style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean, antartica
+* style map better: better colors, better legend, better hover-overs, better responsiveness, zooming in for caribbean, 
+add Antarctica
 * full-screen from places other than home page
 * album icon is ambiguous: perhaps a consistent back-button would be better
-* don't show photos loading on album
-* don't show main photo loading
+* don't show photos loading in album
+* don't show album cover photo loading
 * don't show photos loading on album catalog
-* hide and disable prev/next on touch devices (e.g., phones)
+* hide and disable prev/next on touch devices, since swiping is preferred and 
+they take up valuable display pixels? (e.g., phones)
 * see how it looks with always square thumbnails (tricky on last line!)
 
 *Icebox*

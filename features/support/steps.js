@@ -11,7 +11,7 @@ setDefaultTimeout(10 * 1000);
 When('I browse to {string}', async function(url) {
         // without this next line, one of the tests fails
         await driver.get("data:,");
-        return driver.get(`http:${ url.replace('faganphotos.com', this.parameters.baseUrl) }`);
+        return driver.get(`https:${ url.replace('faganphotos.com', this.parameters.baseUrl) }`);
     } );
 
 When('I wait {int} second(s)', seconds => new Promise( resolve => setTimeout(resolve, seconds * 1000) ) );

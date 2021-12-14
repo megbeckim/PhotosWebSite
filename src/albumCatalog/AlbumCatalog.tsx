@@ -1,15 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { mapRoute, albumRoute } from '../routes';
 import { Thumbnail } from '../thumbnail/Thumbnail';
+import { Model } from '../Types';
 
 const albumTitlePattern = /(.*?) (.*)/;
 const screenChangeEvents = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'];
-const img = <img/>;
+
+type FullScreenDocument = {
+    fullscreenElement?: any,
+    mozFullScreenElement?: any,
+    webkitFullscreenElement?: any,
+    msFullscreenElement?: any,
+    exitFullscreen?: any,
+    mozCancelFullScreen?: any,
+    webkitExitFullscreen?: any,
+    msExitFullscreen?: any
+};
+
+type FullScreenElement = {
+    requestFullscreen?: any,
+    mozRequestFullScreen?: any,
+    webkitRequestFullScreen?: any,
+    msRequestFullscreen?: any
+};
 
 function isFullScreen() {
-    const doc = window.document;
+    const doc = window.document as any as FullScreenDocument;
 
     return doc.fullscreenElement
         || doc.mozFullScreenElement
@@ -17,10 +35,14 @@ function isFullScreen() {
         || doc.msFullscreenElement;
 }
 
-export class AlbumCatalog extends Component {
-    constructor(props) {
+type Props = { model: Model[], focus: boolean };
+type State = { albumCatalogRefCurrent?: HTMLDivElement, fullScreen?: boolean };
+
+export class AlbumCatalog extends Component<Props, State> {
+    private albumCatalogRef = createRef<HTMLDivElement>();
+
+    constructor(props: Props) {
         super(props);
-        this.albumCatalogRef = React.createRef();
         this.state = { fullScreen: false };
     }
 
@@ -42,8 +64,8 @@ export class AlbumCatalog extends Component {
     }
 
     toggleFullScreen() {
-        const doc = window.document;
-        const docEl = doc.documentElement;
+        const doc = window.document as any as FullScreenDocument;
+        const docEl = window.document.documentElement as any as FullScreenElement;
 
         const requestFullScreen = docEl.requestFullscreen
             || docEl.mozRequestFullScreen
@@ -64,18 +86,19 @@ export class AlbumCatalog extends Component {
     render() {
         if (!this.props.model) return null;
 
-        const groupedByYear = this.props.model.reduce((acc, album) => {
+        type GroupedByYear = { [key: string]: Model[] };
+        const groupedByYear = this.props.model.reduce((acc: GroupedByYear, album: Model) => {
                         const [, year] = album.title.match(albumTitlePattern);
-                        acc[year] =  acc[year] || [];
+                        acc[year] = acc[year] || [];
                         acc[year].push(album);
                         return acc;
-                    }, {});
+                    }, {} as GroupedByYear);
 
         const years = Object.keys(groupedByYear).sort().reverse();
 
         return (
             <div className='album-catalog-container'>
-                <div className='album-catalog' ref={this.albumCatalogRef} tabIndex="-1">
+                <div className='album-catalog' ref={this.albumCatalogRef} tabIndex={-1}>
                     <Headroom disable={ !this.state.albumCatalogRefCurrent }
                             parent={ () => this.state.albumCatalogRefCurrent }>
                         <div className='header'>
@@ -105,7 +128,7 @@ export class AlbumCatalog extends Component {
                                             { ix == 0 && <div key={ year } className='year'><div>{ year }</div></div> }
                                             <div key={ix} className='album'>
                                                 <Link to={ albumRoute(album.title) }>
-                                                    <Thumbnail component={ img } album={ abbreviatedFolder } photo={ coverImage } />
+                                                    <Thumbnail album={ abbreviatedFolder } photo={ coverImage } />
                                                     <div className='title'>{ titleWithoutYear }</div>
                                                 </Link>
                                             </div>

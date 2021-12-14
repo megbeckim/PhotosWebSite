@@ -1,29 +1,32 @@
-import React, { Component } from 'react';
+import React, { createRef, Component } from 'react';
 import Headroom from 'react-headroom';
 import { Link } from 'react-router-dom'
 import { homeRoute, photoRoute } from '../routes';
 import { Thumbnail } from '../thumbnail/Thumbnail';
-
-const img = <img/>;
+import { Model } from '../Types';
+import { History } from 'history';
 
 const ESCAPE_KEY_CODE = 27;
 
-function isElementEntirelyVisible (el) {
+function isElementEntirelyVisible (el: HTMLElement) {
     var rect = el.getBoundingClientRect();
 
     return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        (rect.top >= 0) &&
+        (rect.left >= 0) &&
+        (rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) ) &&
+        (rect.right <= (window.innerWidth || document.documentElement.clientWidth) )
     );
 }
 
-export class Album extends Component {
-    constructor(props) {
+type Props = { album: Model, history: History, photoIx: string, focus: boolean };
+type State = { albumRefCurrent?: HTMLElement, mostRecentPhotoViewed?: string, secondMostRecentPhotoViewed?: string };
+export class Album extends Component<Props, State> {
+    private albumRef = createRef<HTMLDivElement>();
+    private visiblePhotoRef = createRef<HTMLDivElement>();
+
+    constructor(props: Props) {
         super(props);
-        this.albumRef = React.createRef();
-        this.visiblePhotoRef = React.createRef();
         this.state = {};
     }
 
@@ -50,7 +53,7 @@ export class Album extends Component {
         }
     }
 
-    static getDerivedStateFromProps(props, state) {
+    static getDerivedStateFromProps(props: Props, state: State) {
         if (props.photoIx) {
             return { mostRecentPhotoViewed: props.photoIx, secondMostRecentPhotoViewed: state.mostRecentPhotoViewed };
         } else {
@@ -62,7 +65,7 @@ export class Album extends Component {
         var index = 0;
         return (
             <div className='album-container'>
-                <div className='album' ref={this.albumRef} tabIndex="-1"
+                <div className='album' ref={this.albumRef} tabIndex={-1}
                         onKeyUp={ e => { if(e.keyCode === ESCAPE_KEY_CODE) this.close(); } }
                         >
                     <Headroom disable={ !this.state.albumRefCurrent } parent={ () => this.state.albumRefCurrent }>
@@ -76,7 +79,7 @@ export class Album extends Component {
                         {
                             this.props.album.chapters.map( (chapter, chapterIx) =>
                                     chapter.pictures.map( (picture, photoIx) => {
-                                           const thisIndex = index++;
+                                           const thisIndex = `${index++}`;
                                            const folder = this.props.album.folder.substring('albums/'.length);
 
                                            return  <div key={`${chapterIx}-${photoIx}`} className='fp-thumbnail'
@@ -85,7 +88,7 @@ export class Album extends Component {
                                                    {
                                                        picture.fileName.endsWith('.mp4')
                                                            ? <video className='photo' controls={ false } src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                                           : <Thumbnail component={ img } className='photo' album={ folder } photo={ picture.fileName } />
+                                                           : <Thumbnail className='photo' album={ folder } photo={ picture.fileName } />
                                                    }
                                                    { photoIx===0 && <div key={chapterIx} className='chapter-title'>{chapter.title}</div> }
                                                </Link>

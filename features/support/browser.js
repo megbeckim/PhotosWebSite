@@ -4,6 +4,7 @@ const { AfterAll } = require('@cucumber/cucumber');
 
 const driver = new Builder()
     .forBrowser('chrome')
+    .setChromeOptions(new chrome.Options().addArguments('ignore-certificate-errors'))
     .build();
 
 AfterAll( () => driver.quit() );

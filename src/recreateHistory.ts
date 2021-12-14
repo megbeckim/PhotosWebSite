@@ -26,9 +26,9 @@ export default function recreateHistory() {
     const [ first, ...rest ] = newHistory;
 
     if (first !== hash) {
-        window.history.replaceState({}, {}, first);
+        window.history.replaceState({}, 'FaganPhotos', first);
     }
     rest.forEach( url => {
-        window.history.pushState({}, {}, url);
+        window.history.pushState({}, 'FaganPhotos', url);
     });
 }
