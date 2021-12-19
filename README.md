@@ -24,7 +24,7 @@ Provide the password for the FTP account, which is the usual password since the 
 
 Then to test, in a second terminal run the following command:
 
-    npm test-prod
+    npm run test-prod
 
 ## To Upload Photos
 
