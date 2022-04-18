@@ -19,7 +19,7 @@
     "react": "17.0.2",
     "react-bootstrap": "^2.0.0",
     "react-dom": "17.0.2",
-    "react-google-charts": "3.0.15",
+    "react-google-charts": "4.0.0",
     "react-headroom": "3.2.0",
     "react-router-dom": "5.3.0",
     "react-transition-group": "^2.3.1"
@@ -30,10 +30,12 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-headroom": "^2.2.2",
     "@types/react-router-dom": "^5.3.2",
-    "chromedriver": "^95.0.0",
+    "chromedriver": "^100.0.0",
     "css-loader": "^0.28.11",
     "css-modules-typescript-loader": "^4.0.1",
     "node-sass": "6.0.1",
+    "pixelmatch": "^5.2.1",
+    "pngjs": "^4.0.1",
     "sass-loader": "12.3.0",
     "selenium-standalone": "^6.23.0",
     "selenium-webdriver": "^4.0.0-beta.3",
@@ -45,9 +47,11 @@
     "webpack-dev-server": "4.4.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
-    "test-prod": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"faganphotos.com\"}'",
-    "test-wip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
+    "test": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"localhost:9000\",\"headless\": true}'",
+    "test-and-watch": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
+    "test-prod": "./node_modules/.bin/cucumber-js --publish-quiet --tags 'not @ignore' --world-parameters '{\"baseUrl\": \"faganphotos.com\",\"headless\": true}'",
+    "test-and-watch-wip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip' --world-parameters '{\"baseUrl\": \"localhost:9000\"}'",
+    "test-wip": "./node_modules/.bin/cucumber-js --publish-quiet --tags '@wip' --world-parameters '{\"baseUrl\": \"localhost:9000\",\"headless\": true}'",
     "e2e-setup": "selenium-standalone install"
   }
 }

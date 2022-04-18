@@ -3,61 +3,103 @@ const assert = require('assert').strict;
 const { Given, When, Then, setDefaultTimeout } = require('@cucumber/cucumber');
 const { until, Key, By, Origin } = require('selenium-webdriver');
 
-const { driver } = require('./browser');
-const { checkVisible, xpathForText, xpathForIcon, scroll } = require('./utils');
+const { xpathForText, xpathForIcon, scroll, checkScreenshot } = require('./utils');
 
-setDefaultTimeout(10 * 1000);
+setDefaultTimeout(15 * 1000);
 
 When('I browse to {string}', async function(url) {
         // without this next line, one of the tests fails
-        await driver.get("data:,");
-        return driver.get(`https:${ url.replace('faganphotos.com', this.parameters.baseUrl) }`);
-    } );
+        await this.driver.get("data:,");
+        return this.driver.get(`https:${ url.replace('faganphotos.com', this.parameters.baseUrl) }`);
+    }
+);
 
-When('I wait {int} second(s)', seconds => new Promise( resolve => setTimeout(resolve, seconds * 1000) ) );
+When('I wait {float} second(s)',
+    async function(seconds) {
+        return new Promise( resolve => setTimeout(resolve, seconds * 1000) );
+    }
+);
 
 Then('the title is {string}',
-    expectedTitle => driver.getTitle()
-                .then( title => assert.equal(title, expectedTitle) ) );
-
-Then('I {}see {string}',
-    (negator, text) => driver.wait( until.elementLocated( xpathForText(text) ) )
-                .then( element => checkVisible(element) )
-                .then( visible => assert.equal( visible, negator === undefined, `The string '${ text }' was${ visible ? '' : ' not' } visible` ) ));
+    async function(expectedTitle) {
+        return this.driver.getTitle()
+            .then( title => assert.equal(title, expectedTitle) );
+    }
+);
 
 When('I click on {string}',
-    text => driver.wait( until.elementLocated( xpathForText(text) ) )
-                .then( element => element.click() ));
+    async function(text) {
+        return this.driver.wait( until.elementLocated( xpathForText(text) ) )
+            .then( element => element.click() );
+    }
+);
 
 When('I press escape',
-    () => driver.actions()
-             .sendKeys(Key.ESCAPE)
-             .perform());
+    async function() {
+        return this.driver.actions()
+            .sendKeys(Key.ESCAPE)
+            .perform();
+     }
+);
 
 When('I press right arrow',
-    () => driver.actions()
+    async function() {
+        return this.driver.actions()
              .sendKeys(Key.ARROW_RIGHT)
-             .perform());
+             .perform();
+    }
+);
 
 When('I press left arrow',
-    () => driver.actions()
-             .sendKeys(Key.ARROW_LEFT)
-             .perform());
+    async function() {
+        return this.driver.actions()
+            .sendKeys(Key.ARROW_LEFT)
+            .perform();
+    }
+);
 
-Then('I {}see the {word} icon',
-    (negator, iconName) => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
-                .then( element => checkVisible(element) )
-                .then( visible => assert.equal( visible, negator === undefined, `The '${ iconName }' icon was${ visible ? '' : ' not' } visible` ) ));
+When('I press space',
+    async function() {
+        console.log('sending "a" now');
+        return this.driver.actions()
+            .sendKeys('a')
+            .perform();
+    }
+);
 
 When('I click on the {word} icon',
-    iconName => driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
-                          .then( element => element.click() ) );
+    async function(iconName) {
+       return this.driver.wait( until.elementLocated( xpathForIcon(iconName) ) )
+          .then( element => element.click() );
+    }
+);
 
 When('I scroll {word} {int} pixels',
-    (direction, distance) => scroll(direction, distance) );
+    async function(direction, distance) {
+        return scroll.call(this, direction, distance);
+    }
+);
 
 When('I move the mouse',
-    () => driver.actions().move({x: 10, y: 0, origin: Origin.POINTER}).perform() );
+    async function() {
+        return this.driver.actions().move({x: 10, y: 0, origin: Origin.POINTER}).perform();
+    }
+);
 
 When('I click the mouse',
-    () => driver.actions().press().release().perform() );
+    async function() {
+        return this.driver.actions().press().release().perform();
+    }
+);
+
+Then('the screen matches the {string} screenshot',
+    async function(screenshotName) {
+        return checkScreenshot.call(this, screenshotName);
+    }
+);
+
+When('I move the mouse to the top left corner',
+    async function() {
+        return this.driver.actions().move({duration: 0 }).perform();
+    }
+);

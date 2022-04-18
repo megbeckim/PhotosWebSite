@@ -14,6 +14,11 @@ Then to test, in a second terminal run the following command:
 
     npm test
 
+If you see the error "This version of ChromeDriver only supports Chrome version XX"
+for some version number XX, then update your ChromeDriver with the following command:
+
+    run npm e2e-setup
+
 ## To Deploy
 
 Type the following commands into a terminal:

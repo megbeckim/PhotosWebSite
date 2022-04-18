@@ -42,8 +42,10 @@ export class Map extends Component<Props, State> {
 
         const data = [
             ['Country', 'Visited', {type: 'string', role: 'tooltip'}],
-            ...this.props.data
+            ...(this.props.data || [])
         ];
+
+        console.log('about to render map with data', data, 'and mapRendered', this.state.mapRendered);
 
         return (
             <div className='map-container'

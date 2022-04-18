@@ -6,179 +6,85 @@ Feature: Photos page
     And I click on "Grace Bay"
     And I wait 1 second
 
-  Scenario: See the title
-    Then the title is "Fagan Photos"
+  Scenario: See the first photo with right and album icons, and caption
+    Then the screen matches the 'T&C the resort' screenshot
 
-  Scenario: See the label
-    Then I see "The resort"
-
-  Scenario: See the album icon
-    Then I see the images icon
-
-  Scenario: See the next photo icon
-    Then I see the angle-right icon
-
-  Scenario: See the previous photo icon
+  Scenario: See the second photo with left, right, and album icons, and caption
     When I click on the angle-right icon
-    And I wait 1 second
-    Then I see the angle-right icon
+    Then the screen matches the 'T&C flowers' screenshot
 
-  Scenario: Don't see the previous photo icon
-    Then I don't see the angle-left icon
-
-  Scenario: Click arrow right
-    When I click on the angle-right icon
-    And I wait 1 second
-    Then I see "Multicoloured bougainvillea"
-
-  Scenario: Click arrow left
+  Scenario: Click arrow left on photo 2 goes back to photo 1
     Given I click on the angle-right icon
     And I wait 1 second
     When I click on the angle-left icon
-    And I wait 1 second
-    And I see "The resort"
+    Then the screen matches the 'T&C the resort' screenshot
 
-  Scenario: Decorations disappear
+  Scenario: Decorations disappear, as seen on photo 2
     Given I click on the angle-right icon
     When I wait 4 seconds
-    Then I don't see "Multicoloured bougainvillea"
-    And I don't see the images icon
-    And I don't see the angle-right icon
-    And I don't see the angle-left icon
+    Then the screen matches the 'T&C flowers undecorated' screenshot
 
-  Scenario: Moving the mouse makes decorations reappear - part 1
-    Given I click on the angle-right icon
-    And I wait 4 seconds
+  Scenario: Moving the mouse makes decorations reappear
+    Given I wait 3 seconds
     When I move the mouse
-    Then I see "Multicoloured bougainvillea"
+    Then the screen matches the 'T&C the resort' screenshot
 
-  Scenario: Moving the mouse makes decorations reappear - part 2
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I move the mouse
-    Then I see the images icon
-
-  Scenario: Moving the mouse makes decorations reappear - part 3
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I move the mouse
-    Then I see the angle-left icon
-
-  Scenario: Moving the mouse makes decorations reappear - part 4
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I move the mouse
-    Then I see the angle-right icon
-
-  Scenario: Clicking makes decorations reappear - part 1
+  Scenario: Clicking makes decorations reappear
     Given I click on the angle-right icon
     And I wait 4 seconds
     When I click the mouse
-    Then I see "Multicoloured bougainvillea"
+    Then the screen matches the 'T&C flowers' screenshot
 
-  Scenario: Clicking makes decorations reappear - part 2
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I click the mouse
-    Then I see the images icon
-
-  Scenario: Clicking makes decorations reappear - part 3
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I click the mouse
-    Then I see the angle-left icon
-
-  Scenario: Clicking makes decorations reappear - part 4
-    Given I click on the angle-right icon
-    And I wait 4 seconds
-    When I click the mouse
-    Then I see the angle-right icon
-
-  Scenario: arrow key right
+  Scenario: Press right arrow key at start
     When I press right arrow
-    And I wait 1 second
-    Then I see "Multicoloured bougainvillea"
+    Then the screen matches the 'T&C flowers' screenshot
 
-  @ignore
-# not really sure what to assert here
-  Scenario: arrow key right at end
-    Given I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    When I click on the angle-right icon
-
-  Scenario: arrow key left
+  Scenario: Press left arrow key at start
     Given I press right arrow
-    And I see the angle-left icon
+    And I wait 1 second
+    When I press left arrow
+    Then the screen matches the 'T&C the resort' screenshot
+
+  Scenario: Pressing the left arrow key at the start does nothing
     When I press left arrow
     And I wait 1 second
-    Then I see "The resort"
-
-  Scenario: arrow key left at start
-    When I press left arrow
-    And I wait 1 second
-    Then I see "The resort"
-
-  Scenario: no right arrow at end
-    When I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    And I click on the angle-right icon
-    Then I don't see the angle-right icon
-
-  Scenario: no left arrow at start
-    Then I don't see the angle-left icon
+    Then the screen matches the 'T&C the resort' screenshot
 
   Scenario: Click back to album
     When I click on the images icon
-    Then I see "2020 Turks & Caicos"
-    And I see "Grace Bay"
+    And I move the mouse to the top left corner
+    Then the screen matches the 'T&C album' screenshot
 
   Scenario: Navigate forward through many photos then click back to album to see it scrolled
     When I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the angle-right icon
+    And I wait 1 second
     And I click on the images icon
-    Then I don't see "2020 Turks & Caicos"
-    And I don't see "Grace Bay"
+    Then the screen matches the 'T&C album scrolled down further' screenshot
 
   Scenario: Escape back to album
     When I press escape
+    And I move the mouse to the top left corner
     Then the title is "Fagan Photos"
-    And I see "2020 Turks & Caicos"
-    And I see "Grace Bay"
+    Then the screen matches the 'T&C album' screenshot
 
   Scenario: Escape back all the way to home
     When I press escape
     And I wait 1 second
     And I press escape
     And I wait 1 second
-    Then the title is "Fagan Photos"
-    And I see "FaganPhotos.com"
-    And I see "2020"
-    And I see "Turks & Caicos"
+    And I move the mouse to the top left corner
+    Then the screen matches the 'FaganPhotos' screenshot

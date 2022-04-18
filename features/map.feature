@@ -7,16 +7,10 @@ Feature: Map
   Scenario: Click back to home
     When I wait 1 second
     And I click on the home icon
-    Then the title is "Fagan Photos"
-    And I see "FaganPhotos.com"
-    And I see "2020"
-    And I see "Turks & Caicos"
+    Then the screen matches the 'FaganPhotos' screenshot
 
   Scenario: Escape back to home
     When I wait 1 second
-    When I press escape
-    Then the title is "Fagan Photos"
-    And I see "FaganPhotos.com"
-    And I see "2020"
-    And I see "Turks & Caicos"
+    And I press escape
+    Then the screen matches the 'FaganPhotos' screenshot
 

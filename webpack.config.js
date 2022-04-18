@@ -36,7 +36,10 @@ module.exports = {
                 context: ['/model.json', '/mapData.json', '/albums', '/thumb.php5'],
                 target: 'https://faganphotos.com',
                 changeOrigin: true,
-                secure: false
+                secure: true,
+                headers: {
+                    Connection: 'Keep-alive'
+                }
             }
         ]
   }
