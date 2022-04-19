@@ -8,8 +8,9 @@ Feature: Album page
   Scenario: Browse to album
     Then the screen matches the 'T&C album' screenshot
 
-  Scenario: Scroll down past albumheader
+  Scenario: Scroll down past album header
     When I scroll down 100 pixels
+    And I move the mouse to the top right corner
     Then the screen matches the 'T&C album without header' screenshot
 
   Scenario: Scroll down past first row of photos

@@ -98,8 +98,17 @@ Then('the screen matches the {string} screenshot',
     }
 );
 
-When('I move the mouse to the top left corner',
-    async function() {
-        return this.driver.actions().move({duration: 0 }).perform();
+When('I move the mouse to the top {word} corner',
+    async function(horizontalPlacement) {
+        let x;
+        if (horizontalPlacement === 'left') {
+            x = 0;
+        } else {
+            const body = this.driver.findElement(By.xpath('/html/body'));
+            x = (await body.getRect()).width;
+            console.log('from right, x =', x);
+        }
+
+        return this.driver.actions().move({duration: 0,  origin: Origin.VIEWPORT, x: x}).perform();
     }
 );
