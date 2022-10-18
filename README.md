@@ -6,9 +6,7 @@ To run, enter the following command in a terminal:
 
     webpack-dev-server
 
-Then browse to:
-
-    https://localhost:9000/
+Then browse to [https://localhost:9000/](https://localhost:9000/).
 
 Then to test, in a second terminal run the following command:
 
@@ -17,7 +15,11 @@ Then to test, in a second terminal run the following command:
 If you see the error "This version of ChromeDriver only supports Chrome version XX"
 for some version number XX, then update your ChromeDriver with the following command:
 
-    run npm e2e-setup
+    npm run e2e-setup
+
+That didn't work for some reason, but running this afterwards fixed it:
+
+    npm install chromedriver --chromedriver-force-download
 
 ## To Deploy
 

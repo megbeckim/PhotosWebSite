@@ -88,7 +88,7 @@ export class Album extends Component<Props, State> {
                                                    {
                                                        picture.fileName.endsWith('.mp4')
                                                            ? <video className='photo' controls={ false } src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                                           : <Thumbnail className='photo' album={ folder } photo={ picture.fileName } />
+                                                           : <Thumbnail className='photo' album={ folder } photo={ picture.fileName } priority={ 100 }/>
                                                    }
                                                    { photoIx===0 && <div key={chapterIx} className='chapter-title'>{chapter.title}</div> }
                                                </Link>

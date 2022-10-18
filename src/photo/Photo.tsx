@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { albumRoute, photoRoute } from '../routes';
 import { Model, Chapter, Picture } from '../Types';
 import { History } from 'history';
+import { PriorityImage } from '../PriorityImage';
 
 const ESCAPE_KEY_CODE = 27;
 
@@ -105,7 +106,7 @@ export class Photo extends Component<Props, State> {
                                         ? <video className='photo' controls={ true }
                                             ref={ +this.props.photoIx === ix ? this.videoRef : null }
                                             src={ `${this.props.album.folder}/${picture.fileName}` } />
-                                        : <img className='photo'
+                                        : <PriorityImage className='photo' priority={ 1 }
                                             src={ `${this.props.album.folder}/${picture.fileName}` } />
                                 }
                                 <div className='caption' >{ picture.caption }</div>

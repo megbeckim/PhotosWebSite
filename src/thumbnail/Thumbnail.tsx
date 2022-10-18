@@ -1,7 +1,8 @@
 import React, { Component, createRef } from 'react';
 import { Model } from '../Types';
+import { PriorityImage } from '../PriorityImage';
 
-type Props = { album: string, photo: string, className?: string };
+type Props = { album: string, photo: string, className?: string, priority: number };
 type State = { width?: number };
 
 export class Thumbnail extends Component<Props, State> {
@@ -19,13 +20,13 @@ export class Thumbnail extends Component<Props, State> {
     }
 
     render() {
-        const { album, photo, ...passThroughProps } = this.props;
+        const { album, photo, priority, ...passThroughProps } = this.props;
 
-        const dynamicProps = { ref: this.thumbnailRef, src: null as string };
+        const dynamicProps = { imageRef: this.thumbnailRef, src: null as string };
         if (this.state.width) {
             dynamicProps.src = `thumb.php5?album=${ encodeURIComponent(album) }&fileName=${ encodeURIComponent(photo) }&width=${this.state.width}`;
         }
 
-        return <img { ...passThroughProps } { ...dynamicProps } />;
+        return <PriorityImage priority={ priority } imageRef={this.thumbnailRef} { ...passThroughProps } { ...dynamicProps } />;
     }
 };

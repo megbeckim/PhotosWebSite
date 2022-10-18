@@ -52,31 +52,43 @@ function rememberLastProps<P>(WrappedComponent: React.ComponentType<P>, propsToR
 const AlbumThatRemembersAlbum = rememberLastProps(Album, ['album']);
 const PhotoThatRemembersAlbumAndPhotoIx = rememberLastProps(Photo, ['album', 'photoIx']);
 
-export class Site extends Component<{}, { model?: Model[], mapData?: string[][], isExact?: boolean }> {
+function getModel() {
+    return (window as any).model as Model[];
+}
+
+function getMapData() {
+    return (window as any).mapData as string[][];
+}
+
+export class Site extends Component<{}, { ready: boolean, isExact?: boolean }> {
     constructor(props: {}) {
         super(props);
 
-        this.state = { };
+        this.state = { ready: false };
+    }
 
-        fetch('/model.json')
-            .then(response => response.json())
-            .then((model: Model[]) => this.setState({ model }));
+    componentDidMount() {
+        this.checkForModelAndMapData.call(this);
+    }
 
-        fetch('/mapData.json')
-            .then(response => response.json())
-            .then(mapData => this.setState({ mapData }));
+    checkForModelAndMapData() {
+        if (getModel() && getMapData()) {
+            this.setState({ ready: true });
+        } else {
+            setTimeout(this.checkForModelAndMapData.bind(this), 10);
+        }
     }
 
     render() {
-        if (!this.state.model) return null;
+        if (!this.state.ready) return null;
 
         const AlbumCatalogRouteChildren = ({ match }: { match: Match<AlbumCatalog['props']> }) => {
-            return <AlbumCatalog model={ this.state.model } focus={ match.isExact }/>;
+            return <AlbumCatalog model={ getModel() } focus={ match.isExact }/>;
         };
 
         const AlbumRouteChildren = ({ match, history }:
                 { match: Match<{ title: string, photoIx: string}>, history: History }) => {
-            const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
+            const album = match && getModel().filter(album => album.title === match.params.title)[0];
             const photoIx = match && match.params.photoIx;
 
             return <CSSTransition in={ match && match.isExact } classNames='container' timeout={ animationTimeout }
@@ -88,7 +100,7 @@ export class Site extends Component<{}, { model?: Model[], mapData?: string[][],
 
         const PhotoRouteChildren = ({ match, history, ...props }:
                 { match: Match<{ title: string, photoIx: string }>, history: History }) => {
-            const album = match && this.state.model.filter(album => album.title === match.params.title)[0];
+            const album = match && getModel().filter(album => album.title === match.params.title)[0];
             const photoIx = match && +match.params.photoIx;
 
             return <CSSTransition in={ match && match.isExact } classNames='container' timeout={ animationTimeout }
@@ -102,7 +114,7 @@ export class Site extends Component<{}, { model?: Model[], mapData?: string[][],
                 { match: Match<{}>, history: History}) => {
             return <CSSTransition in={ match && match.isExact } classNames='container' timeout={ animationTimeout }
                             unmountOnExit >
-                        <Map history={ history } data={ this.state.mapData } />
+                        <Map history={ history } data={ getMapData() } />
                     </CSSTransition>;
         };
 

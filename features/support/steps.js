@@ -106,7 +106,6 @@ When('I move the mouse to the top {word} corner',
         } else {
             const body = this.driver.findElement(By.xpath('/html/body'));
             x = (await body.getRect()).width;
-            console.log('from right, x =', x);
         }
 
         return this.driver.actions().move({duration: 0,  origin: Origin.VIEWPORT, x: x}).perform();

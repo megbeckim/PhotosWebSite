@@ -128,7 +128,7 @@ export class AlbumCatalog extends Component<Props, State> {
                                             { ix == 0 && <div key={ year } className='year'><div>{ year }</div></div> }
                                             <div key={ix} className='album'>
                                                 <Link to={ albumRoute(album.title) }>
-                                                    <Thumbnail album={ abbreviatedFolder } photo={ coverImage } />
+                                                    <Thumbnail album={ abbreviatedFolder } photo={ coverImage } priority={ 10000 } />
                                                     <div className='title'>{ titleWithoutYear }</div>
                                                 </Link>
                                             </div>
