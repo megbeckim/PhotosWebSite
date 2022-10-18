@@ -43,6 +43,12 @@ Next, upload the resized files. Further instructions are in the Google Doc that 
 
 ## Backlog
 
+* update to BrowserRouter (instead of HashRouter) - might break bookmarks!
+* make text stand out more (grey translucent background?)
+* add full screen to all menus
+* scroll up-down on photos
+* make sure zoom-in works on pictures on phone
+* hide decorations on photos by tapping on screen
 * download diff quality images based on screen size (mobile vs. desktop) or bandwidth (do a probe?)
 * make thumbnail images better quality (what's wrong with them again???)
 * update document title when navigating

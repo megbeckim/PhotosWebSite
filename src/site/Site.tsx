@@ -51,9 +51,11 @@ function rememberLastProps<P>(WrappedComponent: React.ComponentType<P>, propsToR
 
 const AlbumThatRemembersAlbum = rememberLastProps(Album, ['album']);
 const PhotoThatRemembersAlbumAndPhotoIx = rememberLastProps(Photo, ['album', 'photoIx']);
+const includeDrafts = window.location.search === '?drafts=true';
 
 function getModel() {
-    return (window as any).model as Model[];
+    const windowAsModel = (window as any).model as Model[];
+    return windowAsModel && windowAsModel.filter(album => album.draft != true || includeDrafts);
 }
 
 function getMapData() {
@@ -120,7 +122,7 @@ export class Site extends Component<{}, { ready: boolean, isExact?: boolean }> {
 
         return (<HashRouter basename={ homeRoute() }>
                 <div className='site'>
-                    <Route path= { homeRoute() } children={ AlbumCatalogRouteChildren }/>
+                    <Route path={ homeRoute() } children={ AlbumCatalogRouteChildren }/>
                     <Route path={ albumRoute(':title') + '/:dummy?/:photoIx?' } children={ AlbumRouteChildren }/>
                     <Route path={ photoRoute(':title', ':photoIx') } children={ PhotoRouteChildren }/>
                     <Route path={ mapRoute() } children={ MapRouteChildren }/>
